@@ -283,6 +283,13 @@ footer span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: v
         <div class="project-tags"><span class="tag">Finans</span><span class="tag">ML</span><span class="tag">BIST</span></div>
       </a>
 
+      <a href="https://github.com/asaygili/akademik-tesvik" target="_blank" class="project-card">
+        <div class="project-header"><span class="project-lang">Flutter</span></div>
+        <h3>Akademik Teşvik</h3>
+        <p>Akademik teşvik ödeneği hesaplama ve takip uygulaması. Flutter ile geliştirilen cross-platform mobil uygulama; yayın, proje, atıf ve diğer akademik faaliyetlere göre teşvik puanı ve ödeme tutarını hesaplar.</p>
+        <div class="project-tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Mobil</span><span class="tag">Akademik</span></div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -367,9 +374,9 @@ footer span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: v
         <div class="section-label">// 04 — Bağlantı</div>
         <h2 style="margin-bottom:0">İletişim</h2>
         <div class="contact-info">
-          <a href="mailto:asaygili@nku.edu.tr" class="contact-row">
+          <a href="/cdn-cgi/l/email-protection#345547554d535d585d745a5f411a5150411a4046" class="contact-row">
             <div class="contact-icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><div class="contact-label">E-posta</div><div class="contact-val">asaygili@nku.edu.tr</div></div>
+            <div><div class="contact-label">E-posta</div><div class="contact-val"><span class="__cf_email__" data-cfemail="543527352d333d383d143a3f217a3130217a2026">[email&#160;protected]</span></div></div>
           </a>
           <a href="tel:+902822502376" class="contact-row">
             <div class="contact-icon-wrap"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.21 2.82 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.62-.62a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
@@ -414,7 +421,7 @@ footer span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: v
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const sections = ['hero','research','projects','publications','contact'];
   const dots = document.querySelectorAll('.side-dot');
   window.addEventListener('scroll', () => {
@@ -434,11 +441,4 @@ footer span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: v
       if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; obs.unobserve(e.target); }
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.research-card, .project-card, .pub-item').forEach((el, i) => {
-    el.style.opacity = '0'; el.style.transform = 'translateY(16px)';
-    el.style.transition = `opacity 0.5s ease ${i*0.06}s, transform 0.5s ease ${i*0.06}s`;
-    obs.observe(el);
-  });
-</script>
-</body>
-</html>
+  document.querySelectorAll('.research-card, .project-card, .p
