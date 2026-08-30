@@ -3,500 +3,551 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doç. Dr. Ahmet Saygılı — NKÜ Bilgisayar Mühendisliği</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Doç. Dr. Ahmet Saygılı | NKÜ Bilgisayar Mühendisliği</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #f7f5f0;
-  --white: #ffffff;
-  --surface2: #f0ede6;
-  --accent: #2b5fa3;
-  --accent2: #1a4a8a;
-  --accent-light: #e8eef8;
-  --text: #1a1a1a;
-  --muted: #666;
-  --muted2: #999;
-  --border: rgba(0,0,0,0.08);
-  --border2: rgba(43,95,163,0.2);
-  --gold: #c8820a;
-  --gold-light: #fef6e4;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1117;--ink-soft:#3A4252;--ink-muted:#7A8499;
+  --paper:#F6F4EF;--paper-warm:#EDEBE3;--white:#FFFFFF;
+  --rule:#DDD9CF;--rule-soft:#E8E5DC;
+  --accent:#1B4B8A;--accent-light:#EBF0F9;--accent-mid:#4A7CC7;
+  --gold:#B8963E;--gold-light:#FDF4E7;
 }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-weight: 400; line-height: 1.7; overflow-x: hidden; }
-body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; z-index: 0; }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 0 60px; height: 64px; background: rgba(247,245,240,0.93); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
-.nav-logo { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 0.04em; transition: color 0.2s; font-family: 'IBM Plex Mono', monospace; }
-.nav-links a:hover { color: var(--accent); }
-#hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 100px 60px 80px; z-index: 1; }
-.hero-inner { max-width: 1160px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; }
-.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-light); border: 1px solid rgba(200,130,10,0.2); padding: 5px 14px; border-radius: 100px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.1s; }
-h1 { font-family: 'Lora', serif; font-size: clamp(48px, 5.5vw, 80px); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; opacity: 0; animation: fadeUp 0.7s ease forwards 0.25s; color: var(--text); }
-h1 span { color: var(--accent); font-style: italic; font-weight: 400; }
-.hero-desc { margin-top: 24px; font-size: 16px; color: var(--muted); max-width: 500px; line-height: 1.8; opacity: 0; animation: fadeUp 0.7s ease forwards 0.4s; }
-.hero-stats { display: flex; margin-top: 44px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.55s; border: 1px solid var(--border); border-radius: 12px; background: var(--white); overflow: hidden; width: fit-content; }
-.stat-item { padding: 20px 32px; border-right: 1px solid var(--border); }
-.stat-item:last-child { border-right: none; }
-.stat-num { font-family: 'Lora', serif; font-size: 32px; font-weight: 600; color: var(--accent); line-height: 1; }
-.stat-label { font-size: 11px; color: var(--muted2); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; }
-.hero-cta { display: flex; gap: 12px; margin-top: 36px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.7s; }
-.btn-primary { padding: 11px 26px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block; font-weight: 500; }
-.btn-primary:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(43,95,163,0.25); }
-.btn-secondary { padding: 11px 26px; background: transparent; color: var(--accent); border: 1px solid var(--border2); border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block; }
-.btn-secondary:hover { background: var(--accent-light); border-color: var(--accent); }
-.profile-wrap { opacity: 0; animation: fadeIn 0.8s ease forwards 0.3s; flex-shrink: 0; }
-.profile-img-container { position: relative; width: 260px; }
-.profile-img-container img { width: 260px; height: 320px; object-fit: cover; border-radius: 16px; display: block; border: 3px solid var(--white); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
-.profile-badge-wrap { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); background: var(--white); border: 1px solid var(--border); border-radius: 100px; padding: 7px 18px; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); white-space: nowrap; }
-.profile-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-.profile-badge-wrap span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
-.profile-orcid { margin-top: 28px; display: flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted2); }
-.profile-orcid a { color: var(--accent); text-decoration: none; }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-.container { max-width: 1160px; margin: 0 auto; padding: 0 60px; }
-section { padding: 96px 0; position: relative; z-index: 1; }
-.section-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
-h2 { font-family: 'Lora', serif; font-size: clamp(28px, 3vw, 40px); font-weight: 600; line-height: 1.2; margin-bottom: 48px; color: var(--text); }
-.divider { height: 1px; background: var(--border); margin: 0 60px; position: relative; z-index: 1; }
-.research-grid, .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.research-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.25s; }
-.research-card:hover { border-color: var(--border2); box-shadow: 0 8px 32px rgba(43,95,163,0.08); transform: translateY(-2px); }
-.research-icon-wrap { width: 44px; height: 44px; border-radius: 10px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-.research-icon-wrap svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
-.research-card h3 { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-.research-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
-.project-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all 0.25s; text-decoration: none; color: inherit; display: block; }
-.project-card:hover { border-color: var(--border2); box-shadow: 0 8px 32px rgba(43,95,163,0.08); transform: translateY(-2px); }
-.project-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
-.project-lang { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 10px; border-radius: 100px; background: var(--accent-light); color: var(--accent); letter-spacing: 0.06em; font-weight: 500; }
-.project-card h3 { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; margin-bottom: 8px; color: var(--accent); }
-.project-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-.tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 10px; border-radius: 100px; border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.04em; background: var(--surface2); }
-.pub-list { display: flex; flex-direction: column; }
-.pub-item { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
-.pub-item:last-child { border-bottom: none; }
-.pub-year { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--accent); font-weight: 500; padding-top: 3px; }
-.pub-title { font-family: 'Lora', serif; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.45; }
-.pub-venue { font-size: 13px; color: var(--muted); font-style: italic; }
-.pub-badges { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-.pub-badge { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 2px 10px; border-radius: 100px; background: var(--accent-light); color: var(--accent); font-weight: 500; }
-.pub-badge.gold { background: var(--gold-light); color: var(--gold); }
-.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 60px; }
-.contact-info { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
-.contact-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 10px; transition: all 0.2s; text-decoration: none; color: inherit; }
-.contact-row:hover { border-color: var(--border2); background: var(--accent-light); }
-.contact-icon-wrap { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.contact-icon-wrap svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
-.contact-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1px; }
-.contact-val { font-size: 13px; color: var(--text); font-weight: 500; }
-.contact-form { display: flex; flex-direction: column; gap: 14px; }
-.form-group { display: flex; flex-direction: column; gap: 5px; }
-.form-group label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
-.form-group input, .form-group textarea { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); padding: 10px 14px; font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.2s; }
-.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(43,95,163,0.1); }
-footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; background: var(--white); }
-footer span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted2); }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { color: var(--muted2); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 11px; transition: color 0.2s; }
-.footer-links a:hover { color: var(--accent); }
-.side-dots { position: fixed; right: 28px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 50; }
-.side-dot { width: 6px; height: 6px; border-radius: 50%; background: #ccc; cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
-.side-dot.active { background: var(--accent); transform: scale(1.6); }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-@media (max-width: 900px) {
-  nav { padding: 0 20px; } .nav-links { display: none; }
-  #hero { padding: 90px 20px 60px; } .hero-inner { grid-template-columns: 1fr; } .profile-wrap { display: none; }
-  section { padding: 60px 0; } .container { padding: 0 20px; } .divider { margin: 0 20px; }
-  .research-grid, .projects-grid { grid-template-columns: 1fr; }
-  .contact-wrap { grid-template-columns: 1fr; padding: 28px; gap: 32px; }
-  footer { flex-direction: column; gap: 12px; padding: 20px; text-align: center; }
-  .side-dots { display: none; } .hero-stats { flex-wrap: wrap; }
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+
+/* ── SIDEBAR ── */
+.sidebar{position:fixed;top:0;left:0;width:236px;height:100vh;background:var(--accent);display:flex;flex-direction:column;padding:36px 26px;z-index:100;overflow-y:auto}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:2px}
+.sidebar-badge{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);display:inline-block;padding:3px 7px;border-radius:3px;margin-bottom:16px}
+.sidebar-name{font-family:'Syne',sans-serif;font-weight:800;font-size:19px;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:4px}
+.sidebar-title{font-size:10.5px;color:rgba(255,255,255,0.55);font-weight:400;margin-bottom:3px;line-height:1.4}
+.sidebar-inst{font-size:10px;color:rgba(255,255,255,0.38);margin-bottom:24px;line-height:1.5}
+.metrics-box{background:rgba(0,0,0,0.18);border-radius:7px;padding:14px;margin-bottom:24px;display:flex;flex-direction:column;gap:8px}
+.metric-row{display:flex;justify-content:space-between;align-items:baseline}
+.metric-val{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:#fff;letter-spacing:-0.03em}
+.metric-key{font-size:10px;color:rgba(255,255,255,0.4)}
+.nav{display:flex;flex-direction:column;gap:1px;flex:1}
+.nav a{font-size:11.5px;color:rgba(255,255,255,0.5);text-decoration:none;padding:6px 9px;border-radius:4px;transition:all 0.15s;display:flex;align-items:center;gap:7px}
+.nav a .nav-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.25);flex-shrink:0;transition:background 0.15s}
+.nav a:hover,.nav a.active{color:#fff;background:rgba(255,255,255,0.11)}
+.nav a.active .nav-dot,.nav a:hover .nav-dot{background:#fff}
+.sidebar-bottom{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.social-row{display:flex;gap:6px;flex-wrap:wrap}
+.social-link{font-size:9px;font-weight:700;letter-spacing:0.06em;color:rgba(255,255,255,0.45);text-decoration:none;padding:3px 7px;border:1px solid rgba(255,255,255,0.15);border-radius:3px;transition:all 0.15s;text-transform:uppercase}
+.social-link:hover{color:#fff;border-color:rgba(255,255,255,0.4)}
+.update-note{font-size:9px;color:rgba(255,255,255,0.25);margin-top:4px}
+
+/* ── MAIN ── */
+.main{margin-left:236px;min-height:100vh}
+
+/* ── HERO ── */
+.hero{padding:60px 52px 52px;border-bottom:1px solid var(--rule);background:var(--white);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:var(--accent-light);opacity:0.5;pointer-events:none}
+.hero-kicker{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.hero-kicker::after{content:'';flex:1;height:1px;background:var(--rule)}
+.hero-heading{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4vw,50px);line-height:1.0;letter-spacing:-0.04em;color:var(--ink);margin-bottom:6px}
+.hero-heading .dim{color:var(--ink-muted);font-weight:600}
+.hero-role{font-size:14px;color:var(--accent-mid);font-weight:500;margin-bottom:18px}
+.hero-desc{font-size:15px;color:var(--ink-soft);max-width:520px;line-height:1.7;font-weight:300;margin-bottom:32px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;padding:11px 22px;border-radius:5px;font-size:12.5px;font-weight:500;text-decoration:none;transition:opacity 0.2s}
+.btn-p:hover{opacity:0.85}
+.btn-s{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--ink-soft);padding:11px 22px;border-radius:5px;font-size:12.5px;font-weight:500;text-decoration:none;border:1px solid var(--rule);transition:border-color 0.2s,color 0.2s}
+.btn-s:hover{border-color:var(--ink-soft);color:var(--ink)}
+
+/* ── SECTION ── */
+.section{padding:52px 52px;border-bottom:1px solid var(--rule)}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:32px}
+.sec-num{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--accent-mid);letter-spacing:0.06em;flex-shrink:0}
+.sec-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;flex-shrink:0}
+.section-header::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+/* ── RESEARCH ── */
+.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rc{background:var(--white);border:1px solid var(--rule);border-radius:7px;padding:20px;transition:border-color 0.2s}
+.rc:hover{border-color:var(--accent-mid)}
+.rc-icon{width:30px;height:30px;background:var(--accent-light);border-radius:5px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.rc-icon svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rc-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:-0.01em;line-height:1.2}
+.rc-desc{font-size:12px;color:var(--ink-soft);line-height:1.6;font-weight:300}
+
+/* ── GITHUB PROJECTS ── */
+.pj-list{display:flex;flex-direction:column}
+.pj-item{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;padding:20px 0;border-bottom:1px solid var(--rule-soft)}
+.pj-item:first-child{border-top:1px solid var(--rule-soft)}
+.pj-lang{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:5px}
+.pj-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:-0.02em}
+.pj-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.6;font-weight:300;margin-bottom:8px;max-width:500px}
+.pj-tags{display:flex;gap:4px;flex-wrap:wrap}
+.ptag{font-size:9.5px;font-weight:500;background:var(--paper-warm);color:var(--ink-soft);padding:2px 6px;border-radius:3px}
+.pj-links{display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0}
+.plink{font-size:11px;color:var(--accent-mid);text-decoration:none;white-space:nowrap;font-weight:500;transition:color 0.2s}
+.plink:hover{color:var(--accent)}
+
+/* ── RESEARCH PROJECTS ── */
+.rp-list{display:flex;flex-direction:column}
+.rp-item{padding:20px 0;border-bottom:1px solid var(--rule-soft);display:grid;grid-template-columns:110px 1fr;gap:20px}
+.rp-item:first-child{border-top:1px solid var(--rule-soft)}
+.rp-period{font-size:11px;color:var(--ink-muted);line-height:1.5;padding-top:1px}
+.rp-role{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-bottom:5px}
+.role-y{background:var(--accent-light);color:var(--accent)}
+.role-r{background:var(--paper-warm);color:var(--ink-soft)}
+.rp-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:3px;line-height:1.3}
+.rp-funder{font-size:12px;color:var(--ink-soft);font-weight:300}
+
+/* ── PUBLICATIONS ── */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--rule);margin-bottom:28px;overflow-x:auto}
+.tab{font-size:12px;font-weight:500;color:var(--ink-muted);padding:8px 16px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color 0.15s,border-color 0.15s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:hover{color:var(--ink)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.pub-year{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--accent);padding:10px 0;border-bottom:2px solid var(--accent-light);margin-bottom:0;letter-spacing:-0.01em}
+.pub-item{display:grid;grid-template-columns:1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule-soft);align-items:start}
+.pub-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;line-height:1.45;letter-spacing:-0.01em}
+.pub-authors{font-size:11px;color:var(--ink-muted);margin-bottom:3px;font-weight:300;font-style:italic}
+.pub-venue{font-size:11px;color:var(--ink-soft);font-weight:400}
+.pub-badge{font-size:8.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:2px 6px;border-radius:3px;white-space:nowrap;flex-shrink:0;margin-top:1px;height:fit-content}
+.b-sci{background:var(--accent-light);color:var(--accent)}
+.b-tr{background:var(--gold-light);color:#7A5A1A}
+.b-other{background:var(--paper-warm);color:var(--ink-soft)}
+.b-rev{background:#F0EBF9;color:#5B1B8A}
+.b-conf{background:var(--paper-warm);color:var(--ink-soft)}
+.show-btn{margin-top:14px;font-size:11.5px;color:var(--accent-mid);background:none;border:1px solid var(--rule);border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;padding:7px 14px;display:inline-flex;align-items:center;gap:5px;transition:all 0.15s}
+.show-btn:hover{border-color:var(--accent-mid);color:var(--accent)}
+.hidden{display:none}
+.scholar-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:11.5px;color:var(--accent-mid);text-decoration:none;font-weight:500}
+.scholar-link:hover{color:var(--accent)}
+
+/* ── EDUCATION ── */
+.edu-list{display:flex;flex-direction:column}
+.edu-item{display:grid;grid-template-columns:58px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid var(--rule-soft)}
+.edu-item:first-child{border-top:1px solid var(--rule-soft)}
+.edu-badge{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:var(--accent);background:var(--accent-light);border-radius:4px;padding:3px 6px;text-align:center;letter-spacing:0.02em;height:fit-content}
+.edu-degree{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px;letter-spacing:-0.02em}
+.edu-period{font-size:10px;color:var(--ink-muted);margin-bottom:3px}
+.edu-uni{font-size:12px;color:var(--accent-mid);font-weight:500;margin-bottom:2px}
+.edu-dept{font-size:11px;color:var(--ink-soft);font-weight:300;margin-bottom:6px}
+.edu-thesis{font-size:11.5px;color:var(--ink-muted);font-style:italic;line-height:1.5;background:var(--gold-light);padding:7px 10px;border-radius:4px;border-left:2px solid var(--gold)}
+
+/* ── REVIEWING ── */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rev-card{background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:12px 14px}
+.rev-journal{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:3px;line-height:1.3}
+.rev-meta{font-size:10px;color:var(--ink-muted);font-weight:300}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-heading{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.04em;margin-bottom:10px;color:var(--ink)}
+.contact-desc{font-size:13px;color:var(--ink-soft);line-height:1.65;font-weight:300;margin-bottom:20px}
+.cd-list{display:flex;flex-direction:column}
+.cd-row{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid var(--rule-soft)}
+.cd-row:first-child{border-top:1px solid var(--rule-soft)}
+.ckey{font-size:9.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);min-width:68px;flex-shrink:0}
+.cval{font-size:12.5px;color:var(--ink-soft)}
+.cval a{color:var(--accent-mid);text-decoration:none}
+.cval a:hover{text-decoration:underline}
+.cf{display:flex;flex-direction:column;gap:10px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cf-field{display:flex;flex-direction:column;gap:4px}
+.cf-field label{font-size:9.5px;font-weight:700;color:var(--ink-muted);letter-spacing:0.07em;text-transform:uppercase}
+.cf-field input,.cf-field textarea{font-family:'DM Sans',sans-serif;font-size:12.5px;padding:8px 11px;border:1px solid var(--rule);border-radius:4px;background:var(--white);color:var(--ink);outline:none;transition:border-color 0.15s;resize:none;width:100%}
+.cf-field input:focus,.cf-field textarea:focus{border-color:var(--accent-mid)}
+.cf-field textarea{min-height:80px}
+.cf-submit{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:4px;font-size:12.5px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;transition:opacity 0.2s;text-align:left}
+.cf-submit:hover{opacity:0.85}
+
+/* ── FOOTER ── */
+.footer{padding:18px 52px;display:flex;align-items:center;justify-content:space-between;background:var(--white);border-top:1px solid var(--rule)}
+.footer-text{font-size:10.5px;color:var(--ink-muted)}
+.footer-links{display:flex;gap:14px}
+.footer-links a{font-size:10.5px;color:var(--ink-muted);text-decoration:none}
+.footer-links a:hover{color:var(--accent-mid)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .sidebar{position:static;width:100%;height:auto;flex-direction:row;flex-wrap:wrap;padding:20px;gap:12px}
+  .main{margin-left:0}
+  .sidebar-inst,.update-note{display:none}
+  .metrics-box{flex-direction:row;gap:16px;flex:1}
+  .nav{flex-direction:row;flex-wrap:wrap;flex:none}
+  .sidebar-bottom{margin-top:0}
+  .research-grid,.contact-grid{grid-template-columns:1fr}
+  .rev-grid{grid-template-columns:1fr 1fr}
+  .hero{padding:36px 24px}
+  .section{padding:36px 24px}
+  .footer{padding:16px 24px;flex-direction:column;gap:8px;text-align:center}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#hero" class="nav-logo" style="text-decoration:none">Ahmet Saygılı · NKÜ</a>
-  <ul class="nav-links">
-    <li><a href="#hero">Ana Sayfa</a></li>
-    <li><a href="#research">Araştırma</a></li>
-    <li><a href="#projects">Projeler</a></li>
-    <li><a href="#publications">Yayınlar</a></li>
-    <li><a href="#education">Eğitim</a></li>
-    <li><a href="#contact">İletişim</a></li>
-  </ul>
-</nav>
+<aside class="sidebar">
+  <div>
+    <div class="sidebar-badge">Doçent Doktor</div>
+    <div class="sidebar-name">Ahmet<br>Saygılı</div>
+    <div class="sidebar-title">Bilgisayar Mühendisliği</div>
+    <div class="sidebar-inst">NKÜ Çorlu Mühendislik Fakültesi<br>Tekirdağ</div>
+  </div>
+  <div class="metrics-box">
+    <div class="metric-row"><span class="metric-val">627</span><span class="metric-key">Atıf</span></div>
+    <div class="metric-row"><span class="metric-val">12</span><span class="metric-key">h-indeks</span></div>
+    <div class="metric-row"><span class="metric-val">15</span><span class="metric-key">i10-indeks</span></div>
+  </div>
+  <nav class="nav">
+    <a href="#hero" class="active"><span class="nav-dot"></span>Ana Sayfa</a>
+    <a href="#research"><span class="nav-dot"></span>Araştırma Alanları</a>
+    <a href="#software"><span class="nav-dot"></span>GitHub Projeleri</a>
+    <a href="#publications"><span class="nav-dot"></span>Yayınlar</a>
+    <a href="#rprojects"><span class="nav-dot"></span>Araştırma Projeleri</a>
+    <a href="#education"><span class="nav-dot"></span>Eğitim</a>
+    <a href="#reviewing"><span class="nav-dot"></span>Hakemlik</a>
+    <a href="#contact"><span class="nav-dot"></span>İletişim</a>
+  </nav>
+  <div class="sidebar-bottom">
+    <div class="social-row">
+      <a class="social-link" href="https://scholar.google.com" target="_blank">Scholar</a>
+      <a class="social-link" href="https://github.com/asaygili" target="_blank">GitHub</a>
+      <a class="social-link" href="https://orcid.org/0000-0001-8625-4842" target="_blank">ORCID</a>
+      <a class="social-link" href="https://www.researchgate.net" target="_blank">RG</a>
+      <a class="social-link" href="https://asaygili.cv.nku.edu.tr" target="_blank">NKÜ CV</a>
+    </div>
+    <div class="update-note">Son güncelleme: 13.08.2026</div>
+  </div>
+</aside>
 
-<div class="side-dots">
-  <button class="side-dot active" data-target="hero"></button>
-  <button class="side-dot" data-target="research"></button>
-  <button class="side-dot" data-target="projects"></button>
-  <button class="side-dot" data-target="publications"></button>
-  <button class="side-dot" data-target="education"></button>
-  <button class="side-dot" data-target="contact"></button>
-</div>
+<main class="main">
 
 <!-- HERO -->
-<div id="hero">
-  <div class="hero-inner">
+<section class="hero" id="hero">
+  <div class="hero-kicker">Akademik Portföy · NKÜ Çorlu Mühendislik Fakültesi</div>
+  <h1 class="hero-heading">Doç. Dr.<br><span class="dim">Ahmet Saygılı</span></h1>
+  <div class="hero-role">Bilgisayar Mühendisliği · Tıbbi Görüntü İşleme · Derin Öğrenme · Hayvan Biyometrisi</div>
+  <p class="hero-desc">Tıbbi görüntü işleme, derin öğrenme, hayvan biyometrisi ve veri madenciliği alanlarında araştırmalar yürütüyorum. SCI-Expanded indeksli dergilerde 20+ yayın, 627 atıf, h-indeks 12.</p>
+  <div class="hero-actions">
+    <a href="#publications" class="btn-p">Yayınları Gör →</a>
+    <a href="#software" class="btn-s">GitHub Projeleri</a>
+    <a href="https://asaygili.cv.nku.edu.tr" target="_blank" class="btn-s">Akademik CV ↗</a>
+  </div>
+</section>
+
+<!-- RESEARCH AREAS -->
+<section class="section" id="research">
+  <div class="section-header"><span class="sec-num">01</span><span class="sec-title">Araştırma Alanları</span></div>
+  <div class="research-grid">
+    <div class="rc">
+      <div class="rc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/></svg></div>
+      <div class="rc-name">Tıbbi Görüntü İşleme</div>
+      <div class="rc-desc">Histopatoloji, dermatoloji, MRI ve akciğer görüntülerinin derin öğrenme ile analizi. COVID-19, kalp krizi, maymun çiçeği, beyin tümörü ve sperm morfolojisi gibi alanlarda bilgisayar destekli tanı sistemleri.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+      <div class="rc-name">Derin Öğrenme</div>
+      <div class="rc-desc">CNN, EfficientNet, ViT, Swin Transformer, DenseNet, ConvNeXt, YOLOv8, U-Net mimarileri. ArcFace metrik öğrenme, Grad-CAM ile yorumlanabilir yapay zeka (XAI), few-shot learning uygulamaları.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M3 20a9 9 0 0 1 18 0"/><circle cx="19" cy="19" r="3"/></svg></div>
+      <div class="rc-name">Tarım & Hayvan Biyometrisi</div>
+      <div class="rc-desc">Büyükbaş hayvanların retinal damar desenleri, burun ve yüz görüntüleri ile biyometrik kimlik doğrulama. Lemon, mango, nar ve domates yapraklarında hastalık tespiti için hibrit derin öğrenme yöntemleri.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="rc-name">Veri Madenciliği & ML</div>
+      <div class="rc-desc">Kümeleme algoritmaları, özellik çıkarımı, mRMR özellik seçimi ve makine öğrenmesi yöntemleriyle eğitim başarısı analizi, hastalık tahmini, diyabet teşhisi uygulamaları.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB PROJECTS -->
+<section class="section" id="software">
+  <div class="section-header"><span class="sec-num">02</span><span class="sec-title">GitHub Projeleri</span></div>
+  <div class="pj-list">
+    <div class="pj-item">
+      <div><div class="pj-lang">Python</div><div class="pj-name">CattleFaceMuzzle</div><div class="pj-desc">ArcFace tabanlı metrik öğrenme ve Grad-CAM görsel yorumlanabilirlik ile açıklanabilir büyükbaş hayvan kimlik doğrulama sistemi. Ollama (Qwen3-VL) ile çevrimdışı görsel-dil açıklamaları, Streamlit arayüzü.</div><div class="pj-tags"><span class="ptag">ArcFace</span><span class="ptag">Grad-CAM</span><span class="ptag">Ollama</span><span class="ptag">Streamlit</span><span class="ptag">PyTorch</span></div></div>
+      <div class="pj-links"><a class="plink" href="https://github.com/asaygili" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="pj-item">
+      <div><div class="pj-lang">MATLAB</div><div class="pj-name">CattNIS</div><div class="pj-desc">Büyükbaş hayvanların retinal görüntüleri kullanılarak geliştirilen biyometrik kimlik doğrulama sistemi. Özellik eşleştirme tabanlı retinal damar ağı analizi ile bireysel tanıma.</div><div class="pj-tags"><span class="ptag">Retina</span><span class="ptag">Biyometri</span><span class="ptag">MATLAB</span></div></div>
+      <div class="pj-links"><a class="plink" href="https://github.com/asaygili" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="pj-item">
+      <div><div class="pj-lang">Python</div><div class="pj-name">Retina Sınıflandırma</div><div class="pj-desc">Retinal görüntü sınıflandırması için derin öğrenme ve Swin Transformer modelleri. Göz hastalıklarının erken tespitine yönelik transfer öğrenme tabanlı sınıflandırma sistemi.</div><div class="pj-tags"><span class="ptag">Swin Transformer</span><span class="ptag">Transfer Learning</span><span class="ptag">PyTorch</span></div></div>
+      <div class="pj-links"><a class="plink" href="https://github.com/asaygili" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="pj-item">
+      <div><div class="pj-lang">Python</div><div class="pj-name">Yaprak Hastalık Tespiti</div><div class="pj-desc">Limon, mango ve nar yapraklarını sağlıklı/hasta olarak sınıflandıran derin özellik çıkarım sistemi. mRMR özellik seçimi ile SVM kombinasyonu.</div><div class="pj-tags"><span class="ptag">CNN</span><span class="ptag">mRMR</span><span class="ptag">SVM</span><span class="ptag">Tarım AI</span></div></div>
+      <div class="pj-links"><a class="plink" href="https://github.com/asaygili" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="pj-item">
+      <div><div class="pj-lang">MATLAB</div><div class="pj-name">COVID-19 Tespiti</div><div class="pj-desc">Akciğer BT ve X-ray görüntülerinden COVID-19 tespiti. GMM segmentasyon, k-means analizi ve kernel SVM sınıflandırıcı kullanımı.</div><div class="pj-tags"><span class="ptag">GMM</span><span class="ptag">SVM</span><span class="ptag">Tıbbi Görüntü</span></div></div>
+      <div class="pj-links"><a class="plink" href="https://github.com/asaygili" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="pj-item">
+      <div><div class="pj-lang">HTML / JS</div><div class="pj-name">BIST Analiz Robotu</div><div class="pj-desc">Borsa İstanbul hisseleri için çok modüllü puanlama mimarisi. Teknik analiz, ML, sentiment analizi ve temel analiz kombinasyonuyla yatırım destek sistemi.</div><div class="pj-tags"><span class="ptag">Finans</span><span class="ptag">ML</span><span class="ptag">BIST</span></div></div>
+      <div class="pj-links"><a class="plink" href="#" target="_blank">Tarayıcıda Aç →</a><a class="plink" href="https://github.com/asaygili" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="pj-item">
+      <div><div class="pj-lang">Python · Streamlit</div><div class="pj-name">TNKÜ Atama Puanlama Sistemi</div><div class="pj-desc">NKÜ'nün güncel EYS-YNG-129 kriterlerine göre akademik puan hesaplama aracı. Dr. Öğretim Üyesi, Doçent ve Profesör kadroları için otomatik puanlama ve ön koşul kontrolü.</div><div class="pj-tags"><span class="ptag">Streamlit</span><span class="ptag">Akademik</span><span class="ptag">NKÜ</span></div></div>
+      <div class="pj-links"><a class="plink" href="#" target="_blank">Tarayıcıda Aç →</a><a class="plink" href="https://github.com/asaygili" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="pj-item">
+      <div><div class="pj-lang">Flutter</div><div class="pj-name">Akademik Teşvik</div><div class="pj-desc">Akademik teşvik ödeneği hesaplama ve takip uygulaması. Cross-platform mobil uygulama; yayın, proje, atıf ve diğer akademik faaliyetlere göre teşvik puanı ve ödeme tutarı hesaplar.</div><div class="pj-tags"><span class="ptag">Flutter</span><span class="ptag">Dart</span><span class="ptag">Mobil</span></div></div>
+      <div class="pj-links"><a class="plink" href="#" target="_blank">Uygulamayı Aç →</a><a class="plink" href="https://github.com/asaygili" target="_blank">GitHub →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="section-header"><span class="sec-num">03</span><span class="sec-title">Yayınlar</span></div>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('intl')">Uluslararası Dergiler (29)</div>
+    <div class="tab" onclick="switchTab('natl')">Ulusal Dergiler (3)</div>
+    <div class="tab" onclick="switchTab('conf')">Konferanslar (19)</div>
+    <div class="tab" onclick="switchTab('books')">Kitap Bölümleri</div>
+  </div>
+
+  <!-- INTERNATIONAL JOURNALS -->
+  <div class="tab-panel active" id="panel-intl">
+    <div class="pub-year">2026</div>
+    <div class="pub-item"><div><div class="pub-title">MOD-YOLOv8: a new YOLOv8-based model for meniscal tear detection in knee MRI</div><div class="pub-authors">Şimşek M.A., Sasani H., Dinçel Y.M., Saygılı A., Uysal F., Sertbaş A.</div><div class="pub-venue">PeerJ Computer Science, vol.12, Ocak 2026</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+
+    <div class="pub-year">2025</div>
+    <div class="pub-item"><div><div class="pub-title">Enhancing Retinal Disease Detection With the Swin Transformer: A Comprehensive Comparative Analysis</div><div class="pub-authors">Saygılı A., Atıcı Ö.M.</div><div class="pub-venue">Concurrency and Computation: Practice and Experience, vol.37, Ekim 2025</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+    <div class="pub-item"><div><div class="pub-title">Enhancing Lemon Leaf Disease Detection: A Hybrid Approach Combining Deep Learning Feature Extraction and mRMR-Optimized SVM Classification</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">Applied Sciences, vol.15, Ekim 2025</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+    <div class="pub-item"><div><div class="pub-title">Hybrid few-shot learning and vision transformer approaches for the diagnosis of Monkeypox</div><div class="pub-authors">Güven H., Saygılı A.</div><div class="pub-venue">Signal, Image and Video Processing, vol.19, Ekim 2025</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+    <div class="pub-item"><div><div class="pub-title">A Novel Attention-Based U-Net Approach for Retinal Image Segmentation Across Diverse Datasets</div><div class="pub-authors">Abdelhamed O., Saygılı A.</div><div class="pub-venue">KSÜ Mühendislik Bilimleri Dergisi, vol.28, Eylül 2025</div></div><span class="pub-badge b-tr">TR Dizin</span></div>
+    <div class="pub-item"><div><div class="pub-title">Monkeypox Diagnosis Using MRMR-Based Feature Selection and Hybrid Deep Learning Models: ResNet50V2, NASNetMobile, and InceptionV3</div><div class="pub-authors">Güven H., Saygılı A.</div><div class="pub-venue">International Scientific and Vocational Studies Journal, vol.9, Haziran 2025</div></div><span class="pub-badge b-other">Diğer</span></div>
+    <div class="pub-item"><div><div class="pub-title">U-Net-Based Approaches for Biometric Identification and Recognition in Cattle</div><div class="pub-authors">Cihan P., Saygılı A. ve ark.</div><div class="pub-venue">Kafkas Üni. Veteriner Fakültesi Dergisi, vol.31, pp.425–436, Mayıs 2025</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+    <div class="pub-item"><div><div class="pub-title">Deep learning-based histopathological classification of breast tumors: a multi-magnification approach with state-of-the-art models</div><div class="pub-authors">Irmak G., Saygılı A.</div><div class="pub-venue">Signal, Image and Video Processing, vol.19, Mayıs 2025</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+    <div class="pub-item"><div><div class="pub-title">Performance of machine learning methods for cattle identification and recognition from retinal images</div><div class="pub-authors">Cihan P., Saygılı A. ve ark.</div><div class="pub-venue">Applied Intelligence, vol.55, Mart 2025</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+
+    <div id="older-intl" class="hidden">
+      <div class="pub-year">2024</div>
+      <div class="pub-item"><div><div class="pub-title">Extraction of Cattle Retinal Vascular Patterns with Different Segmentation Methods</div><div class="pub-authors">Cihan P., Saygılı A. ve ark.</div><div class="pub-venue">Sakarya University Journal of Computer and Information Sciences, vol.7, pp.378–388, Kasım 2024</div></div><span class="pub-badge b-tr">TR Dizin</span></div>
+      <div class="pub-item"><div><div class="pub-title">AI-aided cardiovascular disease diagnosis in cattle from retinal images: Machine learning vs. deep learning models</div><div class="pub-authors">Cihan P., Saygılı A. ve ark.</div><div class="pub-venue">Computers and Electronics in Agriculture, vol.226, Kasım 2024</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+      <div class="pub-item"><div><div class="pub-title">A new approach for automatic classification of non-Hodgkin lymphoma using deep learning and classical learning methods on histopathological images</div><div class="pub-authors">Özgür E., Saygılı A.</div><div class="pub-venue">Neural Computing and Applications, vol.36, pp.20537–20560, Ağustos 2024</div></div><span class="pub-badge b-other">Diğer</span></div>
+      <div class="pub-item"><div><div class="pub-title">Comparative Analysis of Diabetes Diagnosis with Machine Learning Methods</div><div class="pub-authors">Aktaş T., Temel İ.M., Saygılı A.</div><div class="pub-venue">International Scientific and Vocational Studies Journal, vol.8, pp.22–32, Haziran 2024</div></div><span class="pub-badge b-other">Diğer</span></div>
+      <div class="pub-item"><div><div class="pub-title">CattNIS: Novel identification system of cattle with retinal images based on feature matching method</div><div class="pub-authors">Saygılı A., Cihan P. ve ark.</div><div class="pub-venue">Computers and Electronics in Agriculture, vol.221, Haziran 2024</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+      <div class="pub-item"><div><div class="pub-title">A novel approach for tomato leaf disease classification with deep convolutional neural networks</div><div class="pub-authors">Irmak G., Saygılı A.</div><div class="pub-venue">Tarım Bilimleri Dergisi, vol.30, pp.367–385, Mart 2024</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+      <div class="pub-year">2023</div>
+      <div class="pub-item"><div><div class="pub-title">Rapid and Precise Identification of COVID-19 through Segmentation and Classification of CT and X-ray Images</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">Sakarya University Journal of Computer and Information Sciences, vol.6, pp.123–139, Ağustos 2023</div></div><span class="pub-badge b-tr">TR Dizin</span></div>
+      <div class="pub-item"><div><div class="pub-title">The Efficiency of Transfer Learning and Data Augmentation in Lemon Leaf Image Classification</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">European Journal of Engineering and Applied Sciences, vol.6, pp.32–40, Temmuz 2023</div></div><span class="pub-badge b-other">Diğer</span></div>
+      <div class="pub-item"><div><div class="pub-title">Identification and Recognition of Animals from Biometric Markers Using Computer Vision Approaches: A Review</div><div class="pub-authors">Cihan P., Saygılı A. ve ark.</div><div class="pub-venue">Kafkas Üni. Veteriner Fakültesi Dergisi, vol.29, pp.581–593, Ocak 2023</div></div><span class="pub-badge b-rev">Derleme</span></div>
+      <div class="pub-year">2022</div>
+      <div class="pub-item"><div><div class="pub-title">Computer-Aided Detection of COVID-19 from CT Images Based on Gaussian Mixture Model and Kernel Support Vector Machines Classifier</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">Arabian Journal for Science and Engineering, vol.47, pp.2435–2453, Şubat 2022</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+      <div class="pub-year">2021</div>
+      <div class="pub-item"><div><div class="pub-title">Analysis and Segmentation of X-ray Images of COVID-19 Patients using the k-means Algorithm</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">Veri Bilimi, vol.4, pp.1–6, Aralık 2021</div></div><span class="pub-badge b-other">Diğer</span></div>
+      <div class="pub-item"><div><div class="pub-title">A new approach for computer-aided detection of coronavirus (COVID-19) from CT and X-ray images using machine learning methods</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">Applied Soft Computing, vol.105, Mart 2021</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+      <div class="pub-year">2020</div>
+      <div class="pub-item"><div><div class="pub-title">A Novel Approach to Heart Attack Prediction Improvement via Extreme Learning Machines Classifier Integrated with Data Resampling Strategy</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">Konya Mühendislik Bilimleri Dergisi, vol.8, pp.853–865, Aralık 2020</div></div><span class="pub-badge b-tr">TR Dizin</span></div>
+      <div class="pub-item"><div><div class="pub-title">Knee Meniscus Segmentation and Tear Detection from MRI: A Review</div><div class="pub-authors">Saygılı A., Varlı S.</div><div class="pub-venue">Current Medical Imaging, vol.16, pp.2–15, Ocak 2020</div></div><span class="pub-badge b-rev">Derleme</span></div>
+      <div class="pub-year">2019</div>
+      <div class="pub-item"><div><div class="pub-title">An efficient and fast computer-aided method for fully automated diagnosis of meniscal tears from magnetic resonance images</div><div class="pub-authors">Saygılı A., Varlı S.</div><div class="pub-venue">Artificial Intelligence in Medicine, vol.97, pp.118–130, Haziran 2019</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+      <div class="pub-item"><div><div class="pub-title">Automated Diagnosis of Meniscus Tears from MRI of the Knee</div><div class="pub-authors">Saygılı A., Varlı S.</div><div class="pub-venue">International Scientific and Vocational Studies Journal, vol.3, pp.92–104, Aralık 2019</div></div><span class="pub-badge b-other">Diğer</span></div>
+      <div class="pub-year">2018</div>
+      <div class="pub-item"><div><div class="pub-title">Classification and Diagnostic Prediction of Breast Cancers via Different Classifiers</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">International Scientific and Vocational Studies Journal, vol.2, pp.48–56, Aralık 2018</div></div><span class="pub-badge b-other">Diğer</span></div>
+      <div class="pub-year">2017</div>
+      <div class="pub-item"><div><div class="pub-title">A new computer-based approach for fully automated segmentation of knee meniscus from magnetic resonance images</div><div class="pub-authors">Saygılı A., Albayrak S.</div><div class="pub-venue">Biocybernetics and Biomedical Engineering, vol.37, pp.432–442, Mayıs 2017</div></div><span class="pub-badge b-sci">SCI-E</span></div>
+      <div class="pub-year">2016</div>
+      <div class="pub-item"><div><div class="pub-title">Hiyerarşik Kümeleme Modeli Kullanan Web Tabanlı Bir Ödev Değerlendirme Sistemi</div><div class="pub-authors">Uzun E., Erdoğan C., Saygılı A.</div><div class="pub-venue">Ejovoc (Electronic Journal of Vocational Colleges), vol.6, pp.87–98, Aralık 2016</div></div><span class="pub-badge b-other">Diğer</span></div>
+    </div>
+    <button class="show-btn" id="toggle-intl" onclick="toggleSection('older-intl','toggle-intl','Eski yayınları gizle ▴','20 yayını daha göster ▾')">20 yayını daha göster ▾</button>
+    <br><a href="https://scholar.google.com" target="_blank" class="scholar-link">Tüm Yayınlar — Google Scholar ↗</a>
+  </div>
+
+  <!-- NATIONAL JOURNALS -->
+  <div class="tab-panel" id="panel-natl">
+    <div class="pub-year">2025</div>
+    <div class="pub-item"><div><div class="pub-title">Classification of Lumbar Spine Degenerative Diseases Using Deep Learning Techniques</div><div class="pub-authors">Bingöl B., Öztürk İ., Dönmez Z.Ç., Saygılı A.</div><div class="pub-venue">Dicle Üni. Mühendislik Dergisi, vol.16, pp.669–675, Eylül 2025</div></div><span class="pub-badge b-tr">TR Dizin</span></div>
+    <div class="pub-year">2024</div>
+    <div class="pub-item"><div><div class="pub-title">Diagnosis and Classification of Diabetic Retinopathy with YOLOv8-Based Deep Learning Model</div><div class="pub-authors">Şanver Ö., Saygılı A.</div><div class="pub-venue">KSÜ Mühendislik Bilimleri Dergisi, vol.27, pp.1297–1305, Aralık 2024</div></div><span class="pub-badge b-tr">TR Dizin</span></div>
+    <div class="pub-item"><div><div class="pub-title">Computer-Aided Detection of Brain Tumors Using Image Processing Techniques</div><div class="pub-authors">Güven H., Saygılı A.</div><div class="pub-venue">KSÜ Mühendislik Bilimleri Dergisi, vol.27, pp.1000–1018, Eylül 2024</div></div><span class="pub-badge b-tr">TR Dizin</span></div>
+  </div>
+
+  <!-- CONFERENCES -->
+  <div class="tab-panel" id="panel-conf">
+    <div class="pub-year">2026</div>
+    <div class="pub-item"><div><div class="pub-title">Beyin Tümörü Sınıflandırmasında CNN ve Swin Transformer Mimarisinin Klinik Hata Maliyetleri Ekseniyle Karşılaştırmalı Analizi</div><div class="pub-authors">Kar H., Ercan M.E., Saygılı A.</div><div class="pub-venue">9th International Conference on Scientific and Academic Research ICSAR 2026, 06–07 Temmuz 2026</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+    <div class="pub-item"><div><div class="pub-title">Sperm Morfolojisi Görüntü Sınıflandırması için Evrişimli Sinir Ağları ve Görsel Dönüştürücülerin Karşılaştırmalı Değerlendirmesi</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">9th International Conference on Scientific and Academic Research ICSAR 2026, 06–07 Temmuz 2026</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+    <div class="pub-year">2025</div>
+    <div class="pub-item"><div><div class="pub-title">Retina Görüntülerine Dayalı Hastalık Tespiti: Farklı Veri Tabanları ve Güncel Modeller</div><div class="pub-authors">Atıcı Ö.M., Saygılı A.</div><div class="pub-venue">7. Uluslararası Mühendislik ve Fen Bilimleri Kongresi, 27–28 Eylül 2025</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+    <div class="pub-year">2024</div>
+    <div class="pub-item"><div><div class="pub-title">ResNet-50 based deep neural network using transfer learning for plant disease classification</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">5th International Conference on Engineering and Applied Natural Sciences, 25–26 Ağustos 2024</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+    <div class="pub-item"><div><div class="pub-title">Beyin Tümörlerinin Bilgisayar Destekli Tespiti: Derin Öğrenme ve Makine Öğrenmesi Yaklaşımları</div><div class="pub-authors">Güven H., Saygılı A.</div><div class="pub-venue">4th International Conference on Scientific and Academic Research, Konya, 19–20 Temmuz 2024</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+    <div id="older-conf" class="hidden">
+      <div class="pub-year">2022</div>
+      <div class="pub-item"><div><div class="pub-title">Classification of Histopathological Breast Cancer Images by Deep Learning Methods</div><div class="pub-authors">Irmak G., Saygılı A.</div><div class="pub-venue">IV. International Congress of Applied Sciences, Engineering and Mathematics, 20–21 Ekim 2022</div></div><span class="pub-badge b-conf">Özet</span></div>
+      <div class="pub-year">2021</div>
+      <div class="pub-item"><div><div class="pub-title">Analysis and Segmentation of X-ray Images of COVID-19 Patients using the k-means Algorithm</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">ICONDATA'21, 04–06 Haziran 2021</div></div><span class="pub-badge b-conf">Özet</span></div>
+      <div class="pub-item"><div><div class="pub-title">Önceden Eğitilmiş VGG16 Derin Evrişimli Sinir Ağı Kullanarak COVID-19 Sınıflandırması</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">5. Mühendislik ve Teknoloji Yönetimi Kongresi, 24–25 Nisan 2021</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+      <div class="pub-item"><div><div class="pub-title">COVID-19 BT Görüntülerinin Bulanık C-Ortalamalar Yöntemi ile Bölütlenmesi</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">5. Mühendislik ve Teknoloji Yönetimi Kongresi, 24–25 Nisan 2021</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+      <div class="pub-year">2020</div>
+      <div class="pub-item"><div><div class="pub-title">Detection of Pneumonia Disease from Chest X-Ray Images via Convolutional Neural Networks</div><div class="pub-authors">Kalkan S., Saygılı A.</div><div class="pub-venue">BILMES EN 2020, 12–15 Aralık 2020</div></div><span class="pub-badge b-conf">Özet</span></div>
+      <div class="pub-year">2018</div>
+      <div class="pub-item"><div><div class="pub-title">Diz Eklemi Menisküs Yapılarının Bölütlenmesinde MRI ve Farklı Uyarım Dizileri</div><div class="pub-authors">Saygılı A., Albayrak S.</div><div class="pub-venue">BILMES 2018, 05–08 Temmuz 2018</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+      <div class="pub-item"><div><div class="pub-title">Farklı Sınıflandırma Yöntemleri ile Göğüs Kanseri Teşhisi</div><div class="pub-authors">Saygılı A.</div><div class="pub-venue">BILMES 2018, 05–08 Temmuz 2018</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+      <div class="pub-item"><div><div class="pub-title">Diz MR Görüntülerinde HOG Kullanılarak Menisküs Yırtık Sınıflandırması</div><div class="pub-authors">Saygılı A., Albayrak S.</div><div class="pub-venue">SIU 2018, 02–05 Mayıs 2018</div></div><span class="pub-badge b-conf">Ulusal</span></div>
+      <div class="pub-year">2017</div>
+      <div class="pub-item"><div><div class="pub-title">Bulanık C-Ortalamalar ile Diz MR Görüntülerinde Menisküs Bölütlemesi ve Yırtık Tespiti</div><div class="pub-authors">Saygılı A., Albayrak S.</div><div class="pub-venue">SIU 2017, 15–18 Mayıs 2017</div></div><span class="pub-badge b-conf">Ulusal</span></div>
+      <div class="pub-item"><div><div class="pub-title">Diz MR Görüntülerinde Menisküs Bölgelerinin Otomatik Tespiti</div><div class="pub-authors">Saygılı A., Kaya H., Albayrak S.</div><div class="pub-venue">SIU 2016, 16–19 Mayıs 2016</div></div><span class="pub-badge b-conf">Ulusal</span></div>
+      <div class="pub-year">2016</div>
+      <div class="pub-item"><div><div class="pub-title">Veri Madenciliği Yöntemleri ile Mühendislik Fakültesi Öğrencilerinin Başarısını Etkileyen Faktörlerin Analizi</div><div class="pub-authors">Saygılı A., Albayrak S.</div><div class="pub-venue">UBMK'16, 20–23 Ekim 2016</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+      <div class="pub-year">2015</div>
+      <div class="pub-item"><div><div class="pub-title">Comparative analysis of codeword representation by clustering methods for the classification of histological tissue types</div><div class="pub-authors">Saygılı A., Uysal G., Bilgin G.</div><div class="pub-venue">Eighth International Conference on Machine Vision (ICMV 2015), 19–21 Kasım 2015</div></div><span class="pub-badge b-conf">Tam Metin</span></div>
+      <div class="pub-year">2013</div>
+      <div class="pub-item"><div><div class="pub-title">Öbekleme Yöntemleri ile Mühendislik Fakültesi Öğrencilerinin Başarı Analizi</div><div class="pub-authors">Saygılı A., Albayrak S.</div><div class="pub-venue">SIU 2013, 24–26 Nisan 2013</div></div><span class="pub-badge b-conf">Ulusal</span></div>
+    </div>
+    <button class="show-btn" id="toggle-conf" onclick="toggleSection('older-conf','toggle-conf','Eski bildirileri gizle ▴','14 bildiriyi daha göster ▾')">14 bildiriyi daha göster ▾</button>
+  </div>
+
+  <!-- BOOKS -->
+  <div class="tab-panel" id="panel-books">
+    <div class="pub-year">2023</div>
+    <div class="pub-item"><div><div class="pub-title">Sağlıklı Şehirler ve Dijitalleşme: Geleceğin Kentlerine Doğru</div><div class="pub-authors">Saygılı A., Cihan P.</div><div class="pub-venue">Sağlıklı Şehir Yönetimi I — HOLISTENCE Publications, Editör: Ersin Kocaman, ss.121–139, 2023</div></div><span class="pub-badge b-conf">Kitap Bölümü</span></div>
+  </div>
+</section>
+
+<!-- RESEARCH PROJECTS -->
+<section class="section" id="rprojects">
+  <div class="section-header"><span class="sec-num">04</span><span class="sec-title">Araştırma Projeleri</span></div>
+  <div class="rp-list">
+    <div class="rp-item">
+      <div class="rp-period">Şub 2025 –<br>Mar 2026</div>
+      <div><span class="rp-role role-y">Yürütücü</span><div class="rp-name">Derin Öğrenme Modelleri ile Retina Görüntülerinden Hastalık Sınıflandırılması</div><div class="rp-funder">Yükseköğretim Kurumları BAP Projesi</div></div>
+    </div>
+    <div class="rp-item">
+      <div class="rp-period">Kas 2021 –<br>Haz 2025</div>
+      <div><span class="rp-role role-r">Araştırmacı</span><div class="rp-name">Sayısal Görüntü İşleme Teknikleri ile Hayvan Retina Görüntülerinden Biyometrik Kimliklendirme ve Hastalık Teşhisi</div><div class="rp-funder">TÜBİTAK 3501</div></div>
+    </div>
+    <div class="rp-item">
+      <div class="rp-period">May 2021 –<br>Kas 2022</div>
+      <div><span class="rp-role role-y">Yürütücü</span><div class="rp-name">Görüntü İşleme ve Yapay Öğrenme Yöntemleri ile Medikal Görüntülerden Hastalık Teşhisi</div><div class="rp-funder">Yükseköğretim Kurumları BAP Projesi</div></div>
+    </div>
+    <div class="rp-item">
+      <div class="rp-period">Mar 2017 –<br>Mar 2019</div>
+      <div><span class="rp-role role-r">Araştırmacı</span><div class="rp-name">Diz Eklemi MR Görüntülerinde Kıkırdak Doku ve Menisküs Bölümleme ve Ölçümleme</div><div class="rp-funder">TÜBİTAK 1001</div></div>
+    </div>
+    <div class="rp-item">
+      <div class="rp-period">Ara 2013 –<br>Haz 2015</div>
+      <div><span class="rp-role role-r">Araştırmacı</span><div class="rp-name">Akıllı Ders Yönetim Sistemi ile Programlama Ödevleri için İntihal Tespiti Uygulaması</div><div class="rp-funder">Yükseköğretim Kurumları BAP Projesi</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-header"><span class="sec-num">05</span><span class="sec-title">Eğitim Bilgileri</span></div>
+  <div class="edu-list">
+    <div class="edu-item">
+      <div class="edu-badge">PhD</div>
+      <div><div class="edu-degree">Doktora</div><div class="edu-period">2014 – 2017</div><div class="edu-uni">Yıldız Teknik Üniversitesi</div><div class="edu-dept">Fen Bilimleri Enstitüsü · Bilgisayar Mühendisliği</div><div class="edu-thesis">MR görüntülerinde menisküslerin segmentasyonu ve menisküs yırtıklarının tespiti (2017)</div></div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-badge">MSc</div>
+      <div><div class="edu-degree">Yüksek Lisans</div><div class="edu-period">2011 – 2013</div><div class="edu-uni">Yıldız Teknik Üniversitesi</div><div class="edu-dept">Fen Bilimleri Enstitüsü · Bilgisayar Mühendisliği (Tezli)</div><div class="edu-thesis">Veri madenciliği ile mühendislik fakültesi öğrencilerinin okul başarılarının analizi (2013)</div></div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-badge">BSc</div>
+      <div><div class="edu-degree">Lisans</div><div class="edu-period">2004 – 2009</div><div class="edu-uni">Çukurova Üniversitesi</div><div class="edu-dept">Mühendislik-Mimarlık Fakültesi · Bilgisayar Mühendisliği</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWING -->
+<section class="section" id="reviewing">
+  <div class="section-header"><span class="sec-num">06</span><span class="sec-title">Hakemlik Faaliyetleri</span></div>
+  <p style="font-size:13px;color:var(--ink-soft);font-weight:300;margin-bottom:20px;line-height:1.6">60+ uluslararası ve ulusal dergide hakemlik. Seçili SCI-Expanded dergiler:</p>
+  <div class="rev-grid">
+    <div class="rev-card"><div class="rev-journal">Diagnostics</div><div class="rev-meta">SCI-Expanded · 17+ hakemlik</div></div>
+    <div class="rev-card"><div class="rev-journal">Symmetry</div><div class="rev-meta">SCI-Expanded · 9+ hakemlik</div></div>
+    <div class="rev-card"><div class="rev-journal">IEEE Transactions on Biometrics</div><div class="rev-meta">SCI · 2 hakemlik</div></div>
+    <div class="rev-card"><div class="rev-journal">Brain Sciences</div><div class="rev-meta">SCI-Expanded · 3 hakemlik</div></div>
+    <div class="rev-card"><div class="rev-journal">Journal of Imaging</div><div class="rev-meta">SCI-Expanded · 5+ hakemlik</div></div>
+    <div class="rev-card"><div class="rev-journal">Electronics</div><div class="rev-meta">SCI-Expanded · 3+ hakemlik</div></div>
+    <div class="rev-card"><div class="rev-journal">Computers and Electronics in Agriculture</div><div class="rev-meta">SCI-Expanded</div></div>
+    <div class="rev-card"><div class="rev-journal">Expert Systems with Applications</div><div class="rev-meta">SCI-Expanded · 2 hakemlik</div></div>
+    <div class="rev-card"><div class="rev-journal">Applied Soft Computing / Applied Intelligence</div><div class="rev-meta">SCI-Expanded</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-header"><span class="sec-num">07</span><span class="sec-title">İletişim</span></div>
+  <div class="contact-grid">
     <div>
-      <div class="hero-tag">
-        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
-        Doçent Doktor · Bilgisayar Mühendisliği
-      </div>
-      <h1>Ahmet<br><span>Saygılı</span></h1>
-      <p class="hero-desc">Tekirdağ Namık Kemal Üniversitesi Çorlu Mühendislik Fakültesi'nde Bilgisayar Mühendisliği Bölümü'nde görev yapıyorum. Tıbbi görüntü işleme, derin öğrenme, hayvan biyometrisi ve veri madenciliği alanlarında araştırmalar yürütüyorum.</p>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">627</div>
-          <div class="stat-label">Atıf</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">12</div>
-          <div class="stat-label">h-indeks</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">15</div>
-          <div class="stat-label">i10-indeks</div>
-        </div>
-      </div>
-      <div class="hero-cta">
-        <a href="#projects" class="btn-primary">Projeleri İncele</a>
-        <a href="http://asaygili.cv.nku.edu.tr/" target="_blank" class="btn-secondary">Akademik CV</a>
+      <div class="contact-heading">Araştırma işbirliği veya tez danışmanlığı için yazın.</div>
+      <div class="contact-desc">Araştırma işbirlikleri, tez danışmanlığı veya diğer akademik konularda aşağıdaki kanallardan ulaşabilirsiniz.</div>
+      <div class="cd-list">
+        <div class="cd-row"><span class="ckey">E-posta</span><span class="cval"><a href="mailto:asaygili@nku.edu.tr">asaygili@nku.edu.tr</a></span></div>
+        <div class="cd-row"><span class="ckey">Telefon</span><span class="cval">(0282) 250 2376</span></div>
+        <div class="cd-row"><span class="ckey">Kurum CV</span><span class="cval"><a href="https://asaygili.cv.nku.edu.tr" target="_blank">asaygili.cv.nku.edu.tr ↗</a></span></div>
+        <div class="cd-row"><span class="ckey">ORCID</span><span class="cval"><a href="https://orcid.org/0000-0001-8625-4842" target="_blank">0000-0001-8625-4842 ↗</a></span></div>
+        <div class="cd-row"><span class="ckey">GitHub</span><span class="cval"><a href="https://github.com/asaygili" target="_blank">github.com/asaygili ↗</a></span></div>
+        <div class="cd-row"><span class="ckey">Konum</span><span class="cval">Tekirdağ, Türkiye</span></div>
       </div>
     </div>
-    <div class="profile-wrap">
-      <div class="profile-img-container">
-        <img src="http://euniversite.nku.edu.tr/personel_genel_resimler/BECD71BC-1C25-D31E-3589-12211C55A93C.JPG" alt="Doç. Dr. Ahmet Saygılı"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div style="display:none;width:260px;height:320px;border-radius:16px;background:var(--accent-light);align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 20px 60px rgba(0,0,0,.12)">
-          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#2b5fa3" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        </div>
-        <div class="profile-badge-wrap">
-          <div class="profile-badge-dot"></div>
-          <span>Çorlu Müh. · Tekirdağ</span>
-        </div>
+    <div class="cf">
+      <div class="cf-row">
+        <div class="cf-field"><label>Ad Soyad</label><input type="text" placeholder="İsminiz"></div>
+        <div class="cf-field"><label>E-posta</label><input type="email" placeholder="mail@ornek.com"></div>
       </div>
-      <div class="profile-orcid">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9 7h2m0 0v10m0-10h3a3 3 0 010 6H11"/></svg>
-        <a href="https://orcid.org/0000-0001-8625-4842" target="_blank">0000-0001-8625-4842</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ARAŞTIRMA -->
-<section id="research">
-  <div class="container">
-    <div class="section-label">// 01 — Uzmanlık</div>
-    <h2>Araştırma Alanları</h2>
-    <div class="research-grid">
-      <div class="research-card">
-        <div class="research-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-        </div>
-        <h3>Tıbbi Görüntü İşleme</h3>
-        <p>Histopatoloji, dermatoloji, MRI ve akciğer görüntülerinin derin öğrenme ile analizi. COVID-19, kalp krizi ve maymun çiçeği gibi hastalıklarda bilgisayar destekli tanı sistemleri.</p>
-      </div>
-      <div class="research-card">
-        <div class="research-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        </div>
-        <h3>Derin Öğrenme</h3>
-        <p>CNN, EfficientNet, ViT, Swin Transformer, DenseNet ve ConvNeXt mimarileri. ArcFace tabanlı metrik öğrenme, Grad-CAM ile yorumlanabilir yapay zeka (XAI) uygulamaları.</p>
-      </div>
-      <div class="research-card">
-        <div class="research-icon-wrap">
-          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="6"/><path d="M12 6v12"/><path d="M2 12h20"/></svg>
-        </div>
-        <h3>Tarım & Hayvancılıkta Görüntü İşleme</h3>
-        <p>Büyükbaş hayvanların retinal damar desenleri, burun ve yüz görüntüleri ile biyometrik kimlik doğrulama sistemleri geliştirilmesi. CattNIS projesiyle özellik eşleştirme tabanlı retinal kimlik doğrulama, CattleFaceMuzzle ile ArcFace metrik öğrenme ve Gradcam ile yorumlanabilirlik. Tarımsal alanda limon, mango, nar ve domates yapraklarında hastalık tespiti için hibrit derin öğrenme + mRMR özellik seçimi yöntemleri uygulaması. </p>
-      </div>
-      <div class="research-card">
-        <div class="research-icon-wrap">
-          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3>Veri Madenciliği & ML</h3>
-        <p>Kümeleme algoritmaları, özellik çıkarımı ve makine öğrenmesi yöntemleriyle eğitim başarısı analizi, hastalık tahmini ve yaprak hastalık tespiti uygulamaları.</p>
-      </div>
+      <div class="cf-field"><label>Konu</label><input type="text" placeholder="Araştırma İşbirliği, Tez Danışmanlığı..."></div>
+      <div class="cf-field"><label>Mesaj</label><textarea placeholder="Mesajınız..."></textarea></div>
+      <button class="cf-submit">Gönder →</button>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PROJELER -->
-<section id="projects">
-  <div class="container">
-    <div class="section-label">// 02 — Kod & Yazılım</div>
-    <h2>GitHub Projeleri</h2>
-    <div class="projects-grid">
-
-      <a href="https://github.com/asaygili/CattleFaceMuzzle" target="_blank" class="project-card">
-        <div class="project-header"><span class="project-lang">Python</span></div>
-        <h3>CattleFaceMuzzle</h3>
-        <p>ArcFace tabanlı metrik öğrenme ve Grad-CAM görsel yorumlanabilirlik ile açıklanabilir büyükbaş hayvan kimlik doğrulama sistemi. Ollama (Qwen3-VL) ile çevrimdışı görsel-dil açıklamaları, Streamlit arayüzü.</p>
-        <div class="project-tags"><span class="tag">ArcFace</span><span class="tag">Grad-CAM</span><span class="tag">Ollama</span><span class="tag">Streamlit</span><span class="tag">PyTorch</span></div>
-      </a>
-
-      <a href="https://github.com/asaygili/CattNIS" target="_blank" class="project-card">
-        <div class="project-header"><span class="project-lang">MATLAB</span></div>
-        <h3>CattNIS</h3>
-        <p>Büyükbaş hayvanların retinal görüntüleri kullanılarak geliştirilen yeni nesil biyometrik kimlik doğrulama sistemi (Novel Identification System). Damar ağı analizi ile bireysel tanıma.</p>
-        <div class="project-tags"><span class="tag">Retina</span><span class="tag">Biyometri</span><span class="tag">MATLAB</span></div>
-      </a>
-
-      <a href="https://github.com/asaygili/retina" target="_blank" class="project-card">
-        <div class="project-header"><span class="project-lang">Python</span></div>
-        <h3>Retina Sınıflandırma</h3>
-        <p>Retinal görüntü sınıflandırması için derin öğrenme modelleri. Göz hastalıklarının erken tespitine yönelik transfer öğrenme tabanlı sınıflandırma sistemi.</p>
-        <div class="project-tags"><span class="tag">Deep Learning</span><span class="tag">Transfer Learning</span><span class="tag">Python</span></div>
-      </a>
-
-      <a href="https://github.com/asaygili/leafclassification" target="_blank" class="project-card">
-        <div class="project-header"><span class="project-lang">Python</span></div>
-        <h3>Yaprak Hastalık Tespiti</h3>
-        <p>Limon, mango ve nar yapraklarını sağlıklı/hasta olarak sınıflandıran derin özellik çıkarım sistemi. ImageNet ön-eğitimli modellerle yüksek doğruluklu tarımsal hastalık tespiti.</p>
-        <div class="project-tags"><span class="tag">CNN</span><span class="tag">Bitki Hastalığı</span><span class="tag">Tarım AI</span></div>
-      </a>
-
-      <a href="https://github.com/asaygili/COVID_Detection" target="_blank" class="project-card">
-        <div class="project-header"><span class="project-lang">MATLAB</span></div>
-        <h3>COVID-19 Tespiti</h3>
-        <p>Akciğer görüntülerinden COVID-19 tespiti için görüntü işleme ve sınıflandırma sistemi. Pandemi döneminde bilgisayar destekli tanı kararı desteği.</p>
-        <div class="project-tags"><span class="tag">COVID-19</span><span class="tag">Tıbbi Görüntü</span><span class="tag">MATLAB</span></div>
-      </a>
-
-      <div class="project-card">
-        <div class="project-header"><span class="project-lang">HTML/JS</span></div>
-        <h3>BIST Analiz Robotu</h3>
-        <p>Borsa İstanbul hisse senetleri için çok modüllü puanlama mimarisi. Teknik analiz, makine öğrenmesi, sentiment analizi ve temel analiz kombinasyonuyla yatırım destek sistemi.</p>
-        <div class="project-tags"><span class="tag">Finans</span><span class="tag">ML</span><span class="tag">BIST</span></div>
-        <div style="display:flex;gap:10px;margin-top:16px">
-          <a href="https://asaygili.github.io/bistbot/" target="_blank" class="btn-primary" style="font-size:11px;padding:7px 16px">Tarayıcıda Aç →</a>
-          <a href="https://github.com/asaygili/bistbot" target="_blank" class="btn-secondary" style="font-size:11px;padding:7px 16px">GitHub</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header"><span class="project-lang">Python · Streamlit</span></div>
-        <h3>TNKÜ Atama Puanlama Sistemi</h3>
-        <p>Tekirdağ Namık Kemal Üniversitesi'nin güncel atama ve yükseltme kriterlerine (EYS-YNG-129) göre akademik puan hesaplama aracı. Dr. Öğretim Üyesi, Doçent ve Profesör kadroları için faaliyet bazlı otomatik puanlama, alan katsayıları ve ön koşul kontrolü.</p>
-        <div class="project-tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Akademik</span><span class="tag">NKÜ</span></div>
-        <div style="display:flex;gap:10px;margin-top:16px">
-          <a href="https://tnku-atama.streamlit.app/" target="_blank" class="btn-primary" style="font-size:11px;padding:7px 16px">Tarayıcıda Aç →</a>
-          <a href="https://github.com/asaygili/tnku-atama" target="_blank" class="btn-secondary" style="font-size:11px;padding:7px 16px">GitHub</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header"><span class="project-lang">Flutter</span></div>
-        <h3>Akademik Teşvik</h3>
-        <p>Akademik teşvik ödeneği hesaplama ve takip uygulaması. Flutter ile geliştirilen cross-platform uygulama; yayın, proje, atıf ve diğer akademik faaliyetlere göre teşvik puanı ve ödeme tutarını hesaplar.</p>
-        <div class="project-tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Mobil</span><span class="tag">Akademik</span></div>
-        <div style="display:flex;gap:10px;margin-top:16px">
-          <a href="https://asaygili.github.io/akademik-tesvik/" target="_blank" class="btn-primary" style="font-size:11px;padding:7px 16px">Uygulamayı Aç →</a>
-          <a href="https://github.com/asaygili/akademik-tesvik" target="_blank" class="btn-secondary" style="font-size:11px;padding:7px 16px">GitHub</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- YAYINLAR -->
-<section id="publications">
-  <div class="container">
-    <div class="section-label">// 03 — Akademik Çıktılar</div>
-    <h2>Yayınlar</h2>
-
-    <h3 style="font-family:'Lora',serif;font-size:18px;font-weight:600;margin-bottom:20px;color:var(--accent)">Uluslararası Hakemli Dergiler</h3>
-    <div class="pub-list">
-      <div class="pub-item"><div class="pub-year">2026</div><div><div class="pub-title">MOD-YOLOv8: a new YOLOv8-based model for meniscal tear detection in knee MRI</div><div class="pub-venue">Şimşek M.A., Sasani H., Dinçel Y.M., Saygılı A., Uysal F., Sertbaş A. — PeerJ Computer Science</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2025</div><div><div class="pub-title">Enhancing Retinal Disease Detection With the Swin Transformer: A Comprehensive Comparative Analysis</div><div class="pub-venue">Saygılı A., Atıcı Ö.M. — Concurrency and Computation: Practice and Experience</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2025</div><div><div class="pub-title">Enhancing Lemon Leaf Disease Detection: A Hybrid Approach Combining Deep Learning Feature Extraction and mRMR-Optimized SVM Classification</div><div class="pub-venue">Saygılı A. — Applied Sciences</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2025</div><div><div class="pub-title">Hybrid few-shot learning and vision transformer approaches for the diagnosis of Monkeypox</div><div class="pub-venue">Güven H., Saygılı A. — Signal, Image and Video Processing</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2025</div><div><div class="pub-title">A Novel Attention-Based U-Net Approach for Retinal Image Segmentation Across Diverse Datasets</div><div class="pub-venue">Abdelhamed O., Saygılı A. — KSÜ Mühendislik Bilimleri Dergisi</div><div class="pub-badges"><span class="pub-badge">TR DİZİN</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2025</div><div><div class="pub-title">U-Net-Based Approaches for Biometric Identification and Recognition in Cattle</div><div class="pub-venue">Cihan P., Saygılı A. ve ark. — Kafkas Üni. Veteriner Fakültesi Dergisi, vol.31, pp.425-436</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2025</div><div><div class="pub-title">Deep learning-based histopathological classification of breast tumors: a multi-magnification approach with state-of-the-art models</div><div class="pub-venue">Irmak G., Saygılı A. — Signal, Image and Video Processing</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2025</div><div><div class="pub-title">Performance of machine learning methods for cattle identification and recognition from retinal images</div><div class="pub-venue">Cihan P., Saygılı A. ve ark. — Applied Intelligence</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2024</div><div><div class="pub-title">AI-aided cardiovascular disease diagnosis in cattle from retinal images: Machine learning vs. deep learning models</div><div class="pub-venue">Cihan P., Saygılı A. ve ark. — Computers and Electronics in Agriculture, vol.226</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2024</div><div><div class="pub-title">A new approach for automatic classification of non-Hodgkin lymphoma using deep learning and classical learning methods on histopathological images</div><div class="pub-venue">Özgür E., Saygılı A. — Neural Computing and Applications, vol.36, pp.20537-20560</div><div class="pub-badges"><span class="pub-badge">Makale</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2024</div><div><div class="pub-title">CattNIS: Novel identification system of cattle with retinal images based on feature matching method</div><div class="pub-venue">Saygılı A. ve ark. — Computers and Electronics in Agriculture, vol.221</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2024</div><div><div class="pub-title">A novel approach for tomato leaf disease classification with deep convolutional neural networks</div><div class="pub-venue">Irmak G., Saygılı A. — Tarım Bilimleri Dergisi, vol.30, pp.367-385</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2023</div><div><div class="pub-title">Identification and Recognition of Animals from Biometric Markers Using Computer Vision Approaches: A Review</div><div class="pub-venue">Cihan P., Saygılı A. ve ark. — Kafkas Üni. Veteriner Fakültesi Dergisi, vol.29, pp.581-593</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span><span class="pub-badge">Derleme</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2022</div><div><div class="pub-title">Computer-Aided Detection of COVID-19 from CT Images Based on Gaussian Mixture Model and Kernel Support Vector Machines Classifier</div><div class="pub-venue">Saygılı A. — Arabian Journal for Science and Engineering, vol.47, pp.2435-2453</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2021</div><div><div class="pub-title">A new approach for computer-aided detection of coronavirus (COVID-19) from CT and X-ray images using machine learning methods</div><div class="pub-venue">Saygılı A. — Applied Soft Computing, vol.105</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2020</div><div><div class="pub-title">Knee Meniscus Segmentation and Tear Detection from MRI: A Review</div><div class="pub-venue">Saygılı A., Varlı S. — Current Medical Imaging, vol.16, pp.2-15</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span><span class="pub-badge">Derleme</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2019</div><div><div class="pub-title">An efficient and fast computer-aided method for fully automated diagnosis of meniscal tears from magnetic resonance images</div><div class="pub-venue">Saygılı A., Varlı S. — Artificial Intelligence in Medicine, vol.97, pp.118-130</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2017</div><div><div class="pub-title">A new computer-based approach for fully automated segmentation of knee meniscus from magnetic resonance images</div><div class="pub-venue">Saygılı A., Albayrak S. — Biocybernetics and Biomedical Engineering, vol.37, pp.432-442</div><div class="pub-badges"><span class="pub-badge">SCI-Expanded</span></div></div></div>
-    </div>
-
-    <h3 style="font-family:'Lora',serif;font-size:18px;font-weight:600;margin:48px 0 20px;color:var(--accent)">Kitap Bölümleri</h3>
-    <div class="pub-list">
-      <div class="pub-item"><div class="pub-year">2023</div><div><div class="pub-title">Sağlıklı Şehirler ve Dijitalleşme: Geleceğin Kentlerine Doğru</div><div class="pub-venue">Saygılı A., Cihan P. — HOLISTENCE Publications, Editör: Ersin Kocaman, ss.121-139</div><div class="pub-badges"><span class="pub-badge">Kitap Bölümü</span></div></div></div>
-    </div>
-
-    <h3 style="font-family:'Lora',serif;font-size:18px;font-weight:600;margin:48px 0 20px;color:var(--accent)">Uluslararası Konferans Bildirileri</h3>
-    <div class="pub-list">
-      <div class="pub-item"><div class="pub-year">2025</div><div><div class="pub-title">Retina Görüntülerine Dayalı Hastalık Tespiti: Farklı Veri Tabanları ve Güncel Modeller</div><div class="pub-venue">Atıcı Ö.M., Saygılı A. — 7. Uluslararası Mühendislik ve Fen Bilimleri Kongresi</div><div class="pub-badges"><span class="pub-badge">Tam Metin</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2024</div><div><div class="pub-title">ResNet-50 based deep neural network using transfer learning for plant disease classification</div><div class="pub-venue">Saygılı A. — 5th International Conference on Engineering and Applied Natural Sciences</div><div class="pub-badges"><span class="pub-badge">Tam Metin</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2024</div><div><div class="pub-title">Beyin Tümörlerinin Bilgisayar Destekli Tespiti: Derin Öğrenme ve Makine Öğrenmesi Yaklaşımları</div><div class="pub-venue">Güven H., Saygılı A. — 4th International Conference on Scientific and Academic Research, Konya</div><div class="pub-badges"><span class="pub-badge">Tam Metin</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2022</div><div><div class="pub-title">Classification of Histopathological Breast Cancer Images by Deep Learning Methods</div><div class="pub-venue">Irmak G., Saygılı A. — IV. International Congress of Applied Sciences, Engineering and Mathematics</div><div class="pub-badges"><span class="pub-badge">Bildiri</span></div></div></div>
-      <div class="pub-item"><div class="pub-year">2015</div><div><div class="pub-title">Comparative analysis of codeword representation by clustering methods for the classification of histological tissue types</div><div class="pub-venue">Saygılı A., Uysal G., Bilgin G. — Eighth International Conference on Machine Vision (ICMV 2015)</div><div class="pub-badges"><span class="pub-badge">Tam Metin</span></div></div></div>
-    </div>
-
-    <div style="margin-top:36px">
-      <a href="https://scholar.google.com/citations?user=-9oeVawAAAAJ" target="_blank" class="btn-secondary">Tüm Yayınlar — Google Scholar →</a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EĞİTİM -->
-<section id="education">
-  <div class="container">
-    <div class="section-label">// 04 — Akademik Geçmiş</div>
-    <h2>Eğitim Bilgileri</h2>
-    <div style="display:flex;flex-direction:column;gap:16px">
-
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:36px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start">
-        <div style="background:var(--accent-light);border-radius:12px;padding:16px 20px;text-align:center;min-width:80px">
-          <div style="font-family:'Lora',serif;font-size:22px;font-weight:600;color:var(--accent)">PhD</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted2);margin-top:4px;letter-spacing:0.06em">2014–2017</div>
-        </div>
-        <div>
-          <div style="font-family:'Lora',serif;font-size:19px;font-weight:600;margin-bottom:6px">Doktora</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:500;margin-bottom:4px">Yıldız Teknik Üniversitesi</div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:12px">Fen Bilimleri Enstitüsü · Bilgisayar Mühendisliği</div>
-          <div style="font-size:13px;color:var(--text);background:var(--surface2);border-radius:8px;padding:10px 14px;border-left:3px solid var(--accent)">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:0.08em">Tez</span><br>
-            MR görüntülerinde menisküslerin segmentasyonu ve menisküs yırtıklarının tespiti (2017)
-          </div>
-        </div>
-      </div>
-
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:36px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start">
-        <div style="background:var(--accent-light);border-radius:12px;padding:16px 20px;text-align:center;min-width:80px">
-          <div style="font-family:'Lora',serif;font-size:22px;font-weight:600;color:var(--accent)">MSc</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted2);margin-top:4px;letter-spacing:0.06em">2011–2013</div>
-        </div>
-        <div>
-          <div style="font-family:'Lora',serif;font-size:19px;font-weight:600;margin-bottom:6px">Yüksek Lisans</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:500;margin-bottom:4px">Yıldız Teknik Üniversitesi</div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:12px">Fen Bilimleri Enstitüsü · Bilgisayar Mühendisliği (Tezli)</div>
-          <div style="font-size:13px;color:var(--text);background:var(--surface2);border-radius:8px;padding:10px 14px;border-left:3px solid var(--accent)">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:0.08em">Tez</span><br>
-            Veri madenciliği ile mühendislik fakültesi öğrencilerinin okul başarılarının analizi (2013)
-          </div>
-        </div>
-      </div>
-
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:36px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start">
-        <div style="background:var(--accent-light);border-radius:12px;padding:16px 20px;text-align:center;min-width:80px">
-          <div style="font-family:'Lora',serif;font-size:22px;font-weight:600;color:var(--accent)">BSc</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted2);margin-top:4px;letter-spacing:0.06em">2004–2009</div>
-        </div>
-        <div>
-          <div style="font-family:'Lora',serif;font-size:19px;font-weight:600;margin-bottom:6px">Lisans</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:500;margin-bottom:4px">Çukurova Üniversitesi</div>
-          <div style="font-size:13px;color:var(--muted)">Mühendislik-Mimarlık Fakültesi · Bilgisayar Mühendisliği</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- İLETİŞİM -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-wrap">
-      <div>
-        <div class="section-label">// 04 — Bağlantı</div>
-        <h2 style="margin-bottom:0">İletişim</h2>
-        <div class="contact-info">
-          <a href="/cdn-cgi/l/email-protection#345547554d535d585d745a5f411a5150411a4046" class="contact-row">
-            <div class="contact-icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><div class="contact-label">E-posta</div><div class="contact-val"><span class="__cf_email__" data-cfemail="543527352d333d383d143a3f217a3130217a2026">[email&#160;protected]</span></div></div>
-          </a>
-          <a href="tel:+902822502376" class="contact-row">
-            <div class="contact-icon-wrap"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.21 2.82 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.62-.62a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-            <div><div class="contact-label">Telefon</div><div class="contact-val">(0282) 250 2376</div></div>
-          </a>
-          <a href="http://asaygili.cv.nku.edu.tr/" target="_blank" class="contact-row">
-            <div class="contact-icon-wrap"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-            <div><div class="contact-label">Kurum Sayfası</div><div class="contact-val">asaygili.cv.nku.edu.tr</div></div>
-          </a>
-          <a href="https://orcid.org/0000-0001-8625-4842" target="_blank" class="contact-row">
-            <div class="contact-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 7h2m0 0v10m0-10h3a3 3 0 010 6H10"/></svg></div>
-            <div><div class="contact-label">ORCID</div><div class="contact-val">0000-0001-8625-4842</div></div>
-          </a>
-          <a href="https://github.com/asaygili" target="_blank" class="contact-row">
-            <div class="contact-icon-wrap"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
-            <div><div class="contact-label">GitHub</div><div class="contact-val">github.com/asaygili</div></div>
-          </a>
-        </div>
-      </div>
-      <div class="contact-form">
-        <div style="margin-bottom:8px">
-          <div class="section-label">Mesaj Gönder</div>
-          <p style="font-size:14px;color:var(--muted);margin-top:6px">Araştırma işbirlikleri, tez danışmanlığı veya diğer konular için yazabilirsiniz.</p>
-        </div>
-        <div class="form-group"><label>Ad Soyad</label><input type="text" placeholder="İsminiz"></div>
-        <div class="form-group"><label>E-posta</label><input type="email" placeholder="mail@ornek.com"></div>
-        <div class="form-group"><label>Konu</label><input type="text" placeholder="Araştırma İşbirliği, Tez Danışmanlığı..."></div>
-        <div class="form-group"><label>Mesaj</label><textarea rows="4" placeholder="Mesajınız..."></textarea></div>
-        <button class="btn-primary" style="width:fit-content" onclick="window.location='mailto:asaygili@nku.edu.tr'">Gönder →</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span>© 2025 Doç. Dr. Ahmet Saygılı · NKÜ Bilgisayar Mühendisliği · Tekirdağ</span>
+<footer class="footer">
+  <div class="footer-text">© 2026 Doç. Dr. Ahmet Saygılı · NKÜ Bilgisayar Mühendisliği · Tekirdağ</div>
   <div class="footer-links">
-    <a href="https://scholar.google.com/citations?user=-9oeVawAAAAJ" target="_blank">Google Scholar</a>
-    <a href="https://www.researchgate.net/profile/Ahmet-Saygili" target="_blank">ResearchGate</a>
+    <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
     <a href="https://github.com/asaygili" target="_blank">GitHub</a>
     <a href="https://orcid.org/0000-0001-8625-4842" target="_blank">ORCID</a>
+    <a href="https://www.researchgate.net" target="_blank">ResearchGate</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const sections = ['hero','research','projects','publications','education','contact'];
-  const dots = document.querySelectorAll('.side-dot');
-  window.addEventListener('scroll', () => {
-    let cur = 'hero';
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && window.scrollY + 150 >= el.offsetTop) cur = id;
-    });
-    dots.forEach(d => d.classList.toggle('active', d.dataset.target === cur));
-  }, { passive: true });
-  dots.forEach(d => d.addEventListener('click', () => {
-    const el = document.getElementById(d.dataset.target);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  }));
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.research-card, .project-card, .p
+</main>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  const tabs=['intl','natl','conf','books'];
+  document.querySelectorAll('.tab')[tabs.indexOf(id)].classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+function toggleSection(sectionId,btnId,hideLabel,showLabel){
+  const el=document.getElementById(sectionId);
+  const btn=document.getElementById(btnId);
+  const isHidden=el.classList.contains('hidden');
+  el.classList.toggle('hidden',!isHidden);
+  btn.textContent=isHidden?hideLabel:showLabel;
+}
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav a');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.getAttribute('id');
+      navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));
+    }
+  });
+},{threshold:0.2});
+sections.forEach(s=>obs.observe(s));
+navLinks.forEach(l=>{
+  l.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(l.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
