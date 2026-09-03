@@ -586,29 +586,30 @@ async function fetchScholarStats() {
   };
 
   try {
-    // OpenAlex API — ücretsiz, açık, CORS yok, ORCID ile doğrudan erişim
-    const res = await fetch('https://api.openalex.org/authors/https://orcid.org/0000-0001-8625-4842?mailto=asaygili@nku.edu.tr', {signal: AbortSignal.timeout(10000)});
-    if (!res.ok) throw new Error('openalex error ' + res.status);
+    // data.json — GitHub Actions tarafından scholarly ile Google Scholar'dan güncellenir
+    const res = await fetch('./data.json?t=' + Date.now(), {signal: AbortSignal.timeout(10000)});
+    if (!res.ok) throw new Error('data.json yüklenemedi');
     const d = await res.json();
-    const citations = String(d.cited_by_count || '—');
-    const hIndex    = String(d.summary_stats?.h_index ?? '—');
-    const i10       = String(d.summary_stats?.i10_index ?? '—');
+    if (!d.stats) throw new Error('İstatistik verisi bulunamadı');
+    const citations = String(d.stats.citations || '—');
+    const hIndex    = String(d.stats.h_index    ?? '—');
+    const i10       = String(d.stats.i10_index  ?? '—');
+    const updated   = d.stats.updated || new Date().toLocaleDateString('tr-TR');
 
     document.getElementById('stat-citations').textContent = citations;
     document.getElementById('stat-hindex').textContent    = hIndex;
     document.getElementById('stat-i10').textContent       = i10;
 
-    const now = new Date().toLocaleDateString('tr-TR');
-    localStorage.setItem('scholar_cache', JSON.stringify({citations, hIndex, i10, date: now}));
+    localStorage.setItem('scholar_cache', JSON.stringify({citations, hIndex, i10, date: updated}));
     icon.innerHTML = '<polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" fill="none"/>';
     btn.style.borderColor = '#22c55e'; btn.style.color = '#22c55e';
-    label.textContent = now;
-    showStatus('✓ OpenAlex üzerinden güncellendi · ' + now, '#15803d');
+    label.textContent = updated;
+    showStatus('✓ Google Scholar\'dan güncellendi · ' + updated, '#15803d');
   } catch(e) {
     icon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>';
     btn.style.borderColor = '#ef4444'; btn.style.color = '#ef4444';
     label.textContent = 'Hata';
-    showStatus('Bağlantı hatası: ' + e.message, '#dc2626');
+    showStatus('Veri yüklenemedi: ' + e.message, '#dc2626');
   } finally {
     btn.disabled = false;
     setTimeout(resetBtn, 5000);
