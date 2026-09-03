@@ -1,7 +1,7 @@
 """
 Günlük çalışan veri çekici:
-  - OpenAlex → atıf / h-indeks / i10-indeks
-  - NKÜ AVES  → son yayınlar listesi
+  - Google Scholar (scholarly) → atıf / h-indeks / i10-indeks
+  - NKÜ AVES → son yayınlar listesi
 Çıktı: data.json (repo kökünde)
 """
 
@@ -12,6 +12,7 @@ from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
+from scholarly import scholarly
 
 HEADERS = {
     "User-Agent": (
@@ -23,18 +24,15 @@ HEADERS = {
 TODAY = datetime.now().strftime("%d.%m.%Y")
 
 
-# ── 1. OpenAlex → Scholar istatistikleri ─────────────────────────────────────
+# ── 1. Google Scholar → atıf istatistikleri ──────────────────────────────────
 def fetch_scholar_stats():
-    orcid = "0000-0001-8625-4842"
-    url = f"https://api.openalex.org/authors/https://orcid.org/{orcid}?mailto=asaygili@nku.edu.tr"
     try:
-        r = requests.get(url, timeout=20)
-        r.raise_for_status()
-        d = r.json()
+        author = scholarly.search_author_id('-9oeVawAAAAJ')
+        scholarly.fill(author, sections=['basics', 'indices'])
         return {
-            "citations": d.get("cited_by_count", 0),
-            "h_index":   d.get("summary_stats", {}).get("h_index", 0),
-            "i10_index": d.get("summary_stats", {}).get("i10_index", 0),
+            "citations": author.get('citedby', 0),
+            "h_index":   author.get('hindex', 0),
+            "i10_index": author.get('i10index', 0),
             "updated":   TODAY,
         }
     except Exception as e:

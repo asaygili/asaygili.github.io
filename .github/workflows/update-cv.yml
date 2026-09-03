@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
 
       - name: Bağımlılıkları yükle
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 scholarly
 
       - name: Verileri çek
         run: python scripts/fetch_cv.py

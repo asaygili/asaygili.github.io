@@ -336,19 +336,7 @@ footer span { font-size: 11px; color: var(--muted2); }
 <section id="publications">
   <div class="container">
     <div class="section-label">// 03 — Akademik Çıktılar</div>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:44px">
-      <h2 style="margin-bottom:0">Yayınlar</h2>
-      <div style="display:flex;align-items:center;gap:10px;padding:12px 18px;border:1px solid var(--border);border-radius:10px;background:var(--white)">
-        <button onclick="openNKUModal()" style="background:none;border:1px solid var(--border);border-radius:7px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
-        </button>
-        <div>
-          <div style="font-size:11px;font-weight:500;color:var(--text)">NKÜ CV'den Senkronize Et</div>
-          <div id="nku-label" style="font-size:10px;color:var(--muted2);margin-top:1px">Son güncelleme: —</div>
-        </div>
-      </div>
-    </div>
-    <div id="nku-status" style="display:none;padding:10px 16px;border-radius:8px;font-size:13px;margin-bottom:20px"></div>
+    <h2 style="margin-bottom:44px">Yayınlar</h2>
 
     <h3 style="font-family:'Lora',serif;font-size:18px;font-weight:600;margin-bottom:20px;color:var(--accent)">Uluslararası Hakemli Dergiler</h3>
     <div class="pub-list">
@@ -562,27 +550,6 @@ footer span { font-size: 11px; color: var(--muted2); }
   </div>
 </section>
 
-<!-- NKÜ CV Modal -->
-<div id="nku-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);align-items:center;justify-content:center">
-  <div style="background:#fff;border-radius:16px;padding:36px;max-width:560px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,0.15);position:relative">
-    <button onclick="document.getElementById('nku-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--muted2);font-size:20px;line-height:1">✕</button>
-    <div style="font-size:10px;color:var(--muted2);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px">NKÜ CV Senkronizasyonu</div>
-    <div style="font-family:'Lora',serif;font-size:20px;font-weight:600;margin-bottom:16px">Yayın Listesini Yapıştır</div>
-    <ol style="font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:20px;padding-left:18px">
-      <li><a href="https://asaygili.cv.nku.edu.tr/cv/yayinlar/" target="_blank" style="color:var(--accent)">asaygili.cv.nku.edu.tr/cv/yayinlar/</a> adresini açın</li>
-      <li>Sayfadaki tüm metni seçin <kbd style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:11px">Ctrl+A</kbd></li>
-      <li>Kopyalayın <kbd style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:11px">Ctrl+C</kbd></li>
-      <li>Aşağıya yapıştırın <kbd style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:11px">Ctrl+V</kbd></li>
-    </ol>
-    <textarea id="nku-paste" rows="7" placeholder="NKÜ CV yayınlar sayfasının içeriğini buraya yapıştırın..." style="width:100%;border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;font-family:'Inter',sans-serif;resize:vertical;outline:none;color:var(--text);background:var(--surface);box-sizing:border-box;transition:border-color 0.15s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
-    <div style="display:flex;gap:10px;margin-top:14px">
-      <button onclick="parseNKUPaste()" style="flex:1;padding:10px;background:var(--text);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--text)'">Analiz Et &amp; Ekle</button>
-      <button onclick="document.getElementById('nku-modal').style.display='none'" style="padding:10px 20px;background:none;border:1px solid var(--border);border-radius:7px;font-size:13px;cursor:pointer;color:var(--muted)">İptal</button>
-    </div>
-    <div id="nku-modal-result" style="display:none;margin-top:14px;padding:10px 14px;border-radius:8px;font-size:13px"></div>
-  </div>
-</div>
-
 <footer>
   <span>© 2025 Doç. Dr. Ahmet Saygılı · NKÜ Bilgisayar Mühendisliği · Tekirdağ</span>
   <div class="footer-links">
@@ -648,204 +615,6 @@ async function fetchScholarStats() {
   }
 }
 
-function openNKUModal() {
-  const m = document.getElementById('nku-modal');
-  m.style.display = 'flex';
-  document.getElementById('nku-paste').value = '';
-  document.getElementById('nku-modal-result').style.display = 'none';
-}
-
-function parseNKUPaste() {
-  const text = document.getElementById('nku-paste').value.trim();
-  const resultEl = document.getElementById('nku-modal-result');
-
-  if (text.length < 100) {
-    resultEl.style.cssText = 'display:block;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-top:14px';
-    resultEl.textContent = 'Yapıştırılan metin çok kısa. Lütfen tüm sayfayı kopyaladığınızdan emin olun.';
-    return;
-  }
-
-  // Mevcut sayfadaki başlıklar
-  const existingTitles = Array.from(document.querySelectorAll('.pub-title'))
-    .map(el => el.textContent.trim().toLowerCase());
-
-  // Yayın bloklarını çıkar
-  // Pattern 1: yıl + başlık (büyük harfli, uzun)
-  const found = [];
-  const lines = text.split('\n').map(l => l.trim()).filter(l => l);
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    // Yıl satırı mı?
-    const yearMatch = line.match(/^(20\d{2}|201\d)$/);
-    if (yearMatch && i + 1 < lines.length) {
-      // Sonraki birkaç satırda başlık ara (uzun, büyük harfle başlayan)
-      for (let j = i+1; j < Math.min(i+4, lines.length); j++) {
-        if (lines[j].length > 20 && /^[A-ZÇĞİÖŞÜa-z]/.test(lines[j]) && !/^(Özgün|Derleme|SCI|TR|Uluslararası|Ulusal|Hakemlik|Makale)/.test(lines[j])) {
-          found.push({year: yearMatch[1], title: lines[j], venue: lines[j+1] || ''});
-          break;
-        }
-      }
-    }
-    // Pattern 2: satır içinde yıl + başlık
-    const inlineMatch = line.match(/\b(20\d{2})\b.*?[—\-–]\s*(.{20,})/);
-    if (inlineMatch) found.push({year: inlineMatch[1], title: inlineMatch[2].trim(), venue: ''});
-  }
-
-  // Deduplicate
-  const seen = new Set();
-  const unique = found.filter(b => { const k=b.title.slice(0,30).toLowerCase(); if(seen.has(k)) return false; seen.add(k); return true; });
-
-  // Sayfada olmayanlar
-  const newPubs = unique.filter(b => !existingTitles.some(t => t.includes(b.title.slice(0,20).toLowerCase())));
-
-  const now = new Date().toLocaleDateString('tr-TR');
-
-  if (newPubs.length > 0) {
-    const pubList = document.querySelector('#publications .pub-list');
-    if (pubList) {
-      newPubs.slice(0,10).reverse().forEach(pub => {
-        const div = document.createElement('div');
-        div.className = 'pub-item';
-        div.style.cssText = 'border-left:3px solid var(--accent);padding-left:12px';
-        div.innerHTML = `<div class="pub-year">${pub.year}</div><div><div class="pub-title">${pub.title}</div><div class="pub-venue">${pub.venue || 'NKÜ CV\'den senkronize edildi'}</div><div class="pub-badges"><span class="pub-badge" style="background:#fef9c3;color:#854d0e;border-color:#fde68a">Yeni</span></div></div>`;
-        pubList.prepend(div);
-      });
-    }
-    resultEl.style.cssText = 'display:block;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;padding:10px 14px;border-radius:8px;font-size:13px;margin-top:14px';
-    resultEl.textContent = `✓ ${newPubs.length} yeni yayın eklendi · Toplam ${unique.length} yayın analiz edildi`;
-    localStorage.setItem('nku_sync', JSON.stringify({date: now, count: unique.length}));
-    document.getElementById('nku-label').textContent = 'Son güncelleme: ' + now + ' · ' + unique.length + ' yayın';
-    setTimeout(() => document.getElementById('nku-modal').style.display='none', 2500);
-  } else if (unique.length > 0) {
-    resultEl.style.cssText = 'display:block;background:#f0f9ff;border:1px solid #bae6fd;color:#075985;padding:10px 14px;border-radius:8px;font-size:13px;margin-top:14px';
-    resultEl.textContent = `✓ Güncel · ${unique.length} yayın analiz edildi, yeni ekleme yok`;
-    localStorage.setItem('nku_sync', JSON.stringify({date: now, count: unique.length}));
-    document.getElementById('nku-label').textContent = 'Son güncelleme: ' + now + ' · ' + unique.length + ' yayın';
-    setTimeout(() => document.getElementById('nku-modal').style.display='none', 2500);
-  } else {
-    resultEl.style.cssText = 'display:block;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-top:14px';
-    resultEl.textContent = 'Yayın bulunamadı. Yayınlar sayfasının metnini (asaygili.cv.nku.edu.tr/cv/yayinlar/) kopyaladığınızdan emin olun.';
-  }
-}
-
-async function syncNKUCV() {
-  const btn = document.getElementById('nku-btn');
-  const icon = document.getElementById('nku-icon');
-  const label = document.getElementById('nku-label');
-  const statusEl = document.getElementById('nku-status');
-  const SPIN = '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="28 56" style="animation:spin 0.8s linear infinite;transform-origin:center"/>';
-  const REFRESH = '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>';
-
-  icon.innerHTML = SPIN;
-  btn.style.borderColor = 'var(--accent)'; btn.style.color = 'var(--accent)';
-  btn.disabled = true; label.textContent = 'Yükleniyor...';
-
-  const resetNKU = (msg) => {
-    icon.innerHTML = REFRESH; btn.disabled = false;
-    btn.style.borderColor='var(--border)'; btn.style.color='var(--muted)';
-    if (msg) label.textContent = msg;
-  };
-  const showNKU = (msg, bg, border, color) => {
-    statusEl.style.cssText = `display:block;padding:10px 16px;border-radius:8px;font-size:13px;margin-bottom:20px;background:${bg};border:1px solid ${border};color:${color}`;
-    statusEl.textContent = msg;
-    setTimeout(() => statusEl.style.display='none', 8000);
-  };
-
-  // Proxy sıralaması — ilki çalışmazsa diğerini dene
-  const targetUrl = 'https://asaygili.cv.nku.edu.tr/cv/yayinlar/';
-  const proxies = [
-    u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
-    u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
-    u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
-  ];
-
-  let htmlContent = null;
-  for (const makeProxy of proxies) {
-    try {
-      label.textContent = 'Deneniyor... (' + (proxies.indexOf(makeProxy)+1) + '/' + proxies.length + ')';
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 12000);
-      const res = await fetch(makeProxy(targetUrl), {signal: controller.signal});
-      clearTimeout(timer);
-      if (!res.ok) continue;
-      const raw = await res.json().catch(() => null) || await res.text();
-      htmlContent = typeof raw === 'string' ? raw : (raw.contents || raw.data || '');
-      if (htmlContent && htmlContent.length > 500) break;
-    } catch(e) { continue; }
-  }
-
-  if (!htmlContent || htmlContent.length < 500) {
-    icon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>';
-    btn.style.borderColor='#ef4444'; btn.style.color='#ef4444';
-    showNKU('Tüm proxy sunucuları erişemedi. NKÜ CV geçici olarak kapalı olabilir veya ağ kısıtlaması var.', '#fef2f2','#fecaca','#991b1b');
-    resetNKU('Bağlanamadı');
-    return;
-  }
-
-  try {
-    const doc = new DOMParser().parseFromString(htmlContent, 'text/html');
-    const bodyText = (doc.body?.innerText || doc.body?.textContent || '').replace(/\s+/g,' ');
-
-    // Yayın başlıklarını çıkar: büyük harf + uzun metin içeren bloklar
-    const existingTitles = Array.from(document.querySelectorAll('.pub-title')).map(el => el.textContent.trim().toLowerCase());
-
-    // "SAYGILI" içeren satırları bul, ardından başlık satırını çek
-    const blocks = [];
-    const re = /SAYGILI AHMET[^.]*?\.\s*([A-Z][^.]{15,120})\s*[—\-–]/g;
-    let m;
-    while ((m = re.exec(bodyText)) !== null) {
-      const title = m[1].trim();
-      const yearM = bodyText.slice(Math.max(0,m.index-50), m.index).match(/\b(20\d{2})\b/);
-      if (title.length > 15) blocks.push({year: yearM ? yearM[1] : '?', title});
-    }
-
-    // Fallback: yıl + büyük harfli başlık pattern
-    if (blocks.length < 3) {
-      const re2 = /\b(202\d|201\d)\b[^A-Z]{0,30}([A-Z][^.\n]{20,150})/g;
-      while ((m = re2.exec(bodyText)) !== null && blocks.length < 40) {
-        blocks.push({year: m[1], title: m[2].trim()});
-      }
-    }
-
-    // Deduplicate
-    const seen = new Set();
-    const unique = blocks.filter(b => { const k=b.title.slice(0,25); if(seen.has(k)) return false; seen.add(k); return true; });
-
-    // Sayfada olmayanları bul
-    const newPubs = unique.filter(b => !existingTitles.some(t => t.includes(b.title.slice(0,20).toLowerCase())));
-
-    const now = new Date().toLocaleDateString('tr-TR');
-
-    if (newPubs.length > 0) {
-      const pubList = document.querySelector('#publications .pub-list');
-      if (pubList) {
-        newPubs.slice(0,5).reverse().forEach(pub => {
-          const div = document.createElement('div');
-          div.className = 'pub-item';
-          div.style.cssText = 'border-left:3px solid var(--accent);padding-left:12px';
-          div.innerHTML = `<div class="pub-year">${pub.year}</div><div><div class="pub-title">${pub.title}</div><div class="pub-venue">NKÜ CV'den senkronize edildi</div><div class="pub-badges"><span class="pub-badge" style="background:#fef9c3;color:#854d0e;border-color:#fde68a">Yeni</span></div></div>`;
-          pubList.prepend(div);
-        });
-      }
-      icon.innerHTML = '<polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" fill="none"/>';
-      btn.style.borderColor='#22c55e'; btn.style.color='#22c55e';
-      showNKU(`✓ ${newPubs.length} yeni yayın eklendi · Toplam ${unique.length} yayın bulundu · ${now}`, '#f0fdf4','#bbf7d0','#166534');
-    } else {
-      icon.innerHTML = '<polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" fill="none"/>';
-      btn.style.borderColor='var(--accent)'; btn.style.color='var(--accent)';
-      showNKU(`✓ Güncel · ${unique.length} yayın bulundu, yeni ekleme yok · ${now}`, '#f0f9ff','#bae6fd','#075985');
-    }
-
-    localStorage.setItem('nku_sync', JSON.stringify({date: now, count: unique.length}));
-    resetNKU('Son güncelleme: ' + now + ' · ' + unique.length + ' yayın');
-    setTimeout(resetNKU, 5000);
-
-  } catch(e) {
-    showNKU('Sayfa ayrıştırılamadı: ' + e.message, '#fef2f2','#fecaca','#991b1b');
-    resetNKU('Hata');
-  }
-}
 
 // Sayfa açılınca data.json + cache yükle
 (function loadCache() {
@@ -858,8 +627,6 @@ async function syncNKUCV() {
       document.getElementById('stat-i10').textContent       = c.i10;
       document.getElementById('scholar-label').textContent  = c.date;
     }
-    const n = JSON.parse(localStorage.getItem('nku_sync') || 'null');
-    if (n) document.getElementById('nku-label').textContent = 'Son güncelleme: ' + n.date + ' · ' + n.count + ' yayın';
   } catch(e) {}
 
   // data.json'dan GitHub Actions tarafından yazılan güncel veriyi yükle
@@ -895,11 +662,6 @@ async function syncNKUCV() {
                 + `</div>`;
               pubList.prepend(div);
             });
-          }
-          const lbl = document.getElementById('nku-label');
-          if (lbl && d.last_updated) {
-            const dt = new Date(d.last_updated).toLocaleDateString('tr-TR');
-            lbl.textContent = 'Son güncelleme: ' + dt + ' · ' + d.publications.length + ' yayın';
           }
         }
       }
