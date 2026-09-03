@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -173,17 +173,7 @@ footer span { font-size: 11px; color: var(--muted2); }
           <div class="stat-num" id="stat-i10">16</div>
           <div class="stat-label">i10-indeks</div>
         </div>
-        <div class="stat-item" style="padding:14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:80px">
-          <button id="scholar-btn" onclick="fetchScholarStats()" title="Google Scholar'dan güncelle" style="background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all 0.2s;flex-shrink:0" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
-            <svg id="scholar-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
-          </button>
-          <div style="text-align:center">
-            <div style="font-size:10px;color:var(--muted);font-weight:500;letter-spacing:0.04em">Scholar</div>
-            <div id="scholar-label" style="font-size:10px;color:var(--muted2);margin-top:2px">Güncelle</div>
-          </div>
-        </div>
       </div>
-      <div id="scholar-status" style="display:none;margin-top:8px;font-size:11px;color:var(--muted2);opacity:0;transition:opacity 0.3s"></div>
       <div class="hero-cta">
         <a href="#projects" class="btn-primary">Projeleri İncele</a>
         <a href="http://asaygili.cv.nku.edu.tr/" target="_blank" class="btn-secondary">Akademik CV</a>
@@ -561,114 +551,8 @@ footer span { font-size: 11px; color: var(--muted2); }
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-async function fetchScholarStats() {
-  const btn = document.getElementById('scholar-btn');
-  const icon = document.getElementById('scholar-icon');
-  const label = document.getElementById('scholar-label');
-  const status = document.getElementById('scholar-status');
-  const SPIN = '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="28 56" style="animation:spin 0.8s linear infinite;transform-origin:center"/>';
-  const REFRESH = '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>';
-
-  icon.innerHTML = SPIN;
-  btn.style.borderColor = 'var(--accent)'; btn.style.color = 'var(--accent)';
-  label.textContent = 'Yükleniyor...'; btn.disabled = true;
-
-  const resetBtn = () => {
-    icon.innerHTML = REFRESH; btn.disabled = false;
-    btn.style.borderColor = 'var(--border)'; btn.style.color = 'var(--muted)';
-    const c = JSON.parse(localStorage.getItem('scholar_cache') || 'null');
-    label.textContent = c ? c.date : 'Güncelle';
-  };
-  const showStatus = (msg, color) => {
-    status.textContent = msg; status.style.color = color;
-    status.style.display = 'block'; status.style.opacity = '1';
-    setTimeout(() => { status.style.opacity='0'; setTimeout(()=>status.style.display='none',300); }, 5000);
-  };
-
-  try {
-    // data.json — GitHub Actions tarafından scholarly ile Google Scholar'dan güncellenir
-    const res = await fetch('./data.json?t=' + Date.now(), {signal: AbortSignal.timeout(10000)});
-    if (!res.ok) throw new Error('data.json yüklenemedi');
-    const d = await res.json();
-    if (!d.stats) throw new Error('İstatistik verisi bulunamadı');
-    const citations = String(d.stats.citations || '—');
-    const hIndex    = String(d.stats.h_index    ?? '—');
-    const i10       = String(d.stats.i10_index  ?? '—');
-    const updated   = d.stats.updated || new Date().toLocaleDateString('tr-TR');
-
-    document.getElementById('stat-citations').textContent = citations;
-    document.getElementById('stat-hindex').textContent    = hIndex;
-    document.getElementById('stat-i10').textContent       = i10;
-
-    localStorage.setItem('scholar_cache', JSON.stringify({citations, hIndex, i10, date: updated}));
-    icon.innerHTML = '<polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" fill="none"/>';
-    btn.style.borderColor = '#22c55e'; btn.style.color = '#22c55e';
-    label.textContent = updated;
-    showStatus('✓ Google Scholar\'dan güncellendi · ' + updated, '#15803d');
-  } catch(e) {
-    icon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>';
-    btn.style.borderColor = '#ef4444'; btn.style.color = '#ef4444';
-    label.textContent = 'Hata';
-    showStatus('Veri yüklenemedi: ' + e.message, '#dc2626');
-  } finally {
-    btn.disabled = false;
-    setTimeout(resetBtn, 5000);
-  }
-}
 
 
-// Sayfa açılınca data.json + cache yükle
-(function loadCache() {
-  try {
-    // localStorage cache
-    const c = JSON.parse(localStorage.getItem('scholar_cache') || 'null');
-    if (c) {
-      document.getElementById('stat-citations').textContent = c.citations;
-      document.getElementById('stat-hindex').textContent    = c.hIndex;
-      document.getElementById('stat-i10').textContent       = c.i10;
-      document.getElementById('scholar-label').textContent  = c.date;
-    }
-  } catch(e) {}
-
-  // data.json'dan GitHub Actions tarafından yazılan güncel veriyi yükle
-  fetch('./data.json?t=' + Date.now())
-    .then(r => r.ok ? r.json() : null)
-    .then(d => {
-      if (!d) return;
-      // İstatistikler
-      if (d.stats) {
-        if (d.stats.citations) document.getElementById('stat-citations').textContent = d.stats.citations;
-        if (d.stats.h_index)   document.getElementById('stat-hindex').textContent    = d.stats.h_index;
-        if (d.stats.i10_index) document.getElementById('stat-i10').textContent       = d.stats.i10_index;
-        if (d.stats.updated)   document.getElementById('scholar-label').textContent  = d.stats.updated;
-      }
-      // NKÜ yayınları — sayfada olmayanları ekle
-      if (d.publications && d.publications.length) {
-        const existingTitles = Array.from(document.querySelectorAll('.pub-title'))
-          .map(el => el.textContent.trim().toLowerCase());
-        const newPubs = d.publications.filter(p =>
-          !existingTitles.some(t => t.includes((p.title||'').slice(0,20).toLowerCase()))
-        );
-        if (newPubs.length) {
-          const pubList = document.querySelector('#publications .pub-list');
-          if (pubList) {
-            newPubs.slice(0,10).reverse().forEach(pub => {
-              const div = document.createElement('div');
-              div.className = 'pub-item';
-              div.style.cssText = 'border-left:3px solid var(--accent);padding-left:12px';
-              div.innerHTML = `<div class="pub-year">${pub.year||'?'}</div><div>`
-                + `<div class="pub-title">${pub.title}</div>`
-                + `<div class="pub-venue">${pub.venue||''}</div>`
-                + `<div class="pub-badges"><span class="pub-badge" style="background:#fef9c3;color:#854d0e;border-color:#fde68a">Yeni</span>${pub.type?`<span class="pub-badge">${pub.type}</span>`:''}</div>`
-                + `</div>`;
-              pubList.prepend(div);
-            });
-          }
-        }
-      }
-    })
-    .catch(() => {}); // data.json henüz yoksa sessizce geç
-})();
 </script>
 <style>@keyframes spin{to{stroke-dashoffset:-84}}</style>
 <script>

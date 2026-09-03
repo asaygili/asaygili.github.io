@@ -1,9 +1,7 @@
 name: CV Verilerini Güncelle
 
 on:
-  schedule:
-    - cron: '0 21 * * *'   # Her gün saat 00:00 TR (UTC+3)
-  workflow_dispatch:         # GitHub'dan manuel tetikleme butonu
+  workflow_dispatch:         # Sadece manuel tetikleme
 
 jobs:
   update:
@@ -19,7 +17,7 @@ jobs:
           python-version: '3.12'
 
       - name: Bağımlılıkları yükle
-        run: pip install requests beautifulsoup4 scholarly
+        run: pip install requests
 
       - name: Verileri çek
         run: python scripts/fetch_cv.py
