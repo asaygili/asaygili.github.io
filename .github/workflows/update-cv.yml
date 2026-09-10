@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
 
       - name: Bağımlılıkları yükle
-        run: pip install scholarly
+        run: pip install requests beautifulsoup4
 
       - name: Google Scholar verilerini çek
         run: python scripts/fetch_cv.py
