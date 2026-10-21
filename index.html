@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahmet Saygılı</title>
 <meta name="description" content="Doç. Dr. Ahmet Saygılı — Tıbbi Görüntü İşleme ve Derin Öğrenme, NKÜ Bilgisayar Mühendisliği">
+<!-- Open Graph / sosyal medya paylaşım etiketleri -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://asaygili.github.io/">
+<meta property="og:title" content="Ahmet Saygılı — Doçent Doktor, NKÜ Bilgisayar Mühendisliği">
+<meta property="og:description" content="Tıbbi görüntü işleme, derin öğrenme ve hayvan biyometrisi alanlarında araştırmacı. 672 atıf, h-indeks 13.">
+<meta property="og:image" content="https://asaygili.github.io/images/og-banner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ahmet Saygılı — Doçent Doktor, NKÜ">
+<meta name="twitter:description" content="Tıbbi görüntü işleme, derin öğrenme ve hayvan biyometrisi alanlarında araştırmacı.">
+<meta name="twitter:image" content="https://asaygili.github.io/images/og-banner.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -484,11 +496,61 @@ footer span {
 }
 .side-dot.active { background: var(--accent); transform: scale(1.6); }
 
+/* ─── Scroll progress bar ────────────────────────────── */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: 2px; background: var(--accent);
+  transform-origin: left; transform: scaleX(0);
+  transition: transform 80ms linear;
+  pointer-events: none;
+}
+
+/* ─── Nav glassmorphism on scroll ────────────────────── */
+nav { transition: background 0.3s, box-shadow 0.3s; }
+nav.scrolled {
+  background: rgba(9,14,26,0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--border);
+}
+:root[data-theme="light"] nav.scrolled {
+  background: rgba(247,250,253,0.92);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) nav.scrolled {
+    background: rgba(247,250,253,0.92);
+  }
+}
+
+/* ─── Section head reveal ────────────────────────────── */
+.section-head .section-num {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.section-head h2 {
+  transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+}
+.section-head.sh-hidden .section-num,
+.section-head.sh-hidden h2 {
+  opacity: 0; transform: translateY(18px);
+}
+
+/* ─── Hero parallax background ──────────────────────── */
+.hero-grid-bg { will-change: transform; }
+
+/* ─── Staggered card delays ──────────────────────────── */
+.research-card:nth-child(1),.project-card:nth-child(1),.pub-item:nth-child(1),.edu-item:nth-child(1),.rproj-item:nth-child(1) { --sc-delay: 0ms; }
+.research-card:nth-child(2),.project-card:nth-child(2),.pub-item:nth-child(2),.edu-item:nth-child(2),.rproj-item:nth-child(2) { --sc-delay: 90ms; }
+.research-card:nth-child(3),.project-card:nth-child(3),.pub-item:nth-child(3),.edu-item:nth-child(3),.rproj-item:nth-child(3) { --sc-delay: 180ms; }
+.research-card:nth-child(4),.project-card:nth-child(4),.pub-item:nth-child(4),.edu-item:nth-child(4),.rproj-item:nth-child(4) { --sc-delay: 270ms; }
+.research-card:nth-child(n+5),.project-card:nth-child(n+5),.pub-item:nth-child(n+5),.edu-item:nth-child(n+5),.rproj-item:nth-child(n+5) { --sc-delay: 360ms; }
+
 /* ─── Animations ─────────────────────────────────────── */
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
+  #scroll-progress { display: none; }
   .hero-inner > * { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .section-head.sh-hidden .section-num, .section-head.sh-hidden h2 { opacity: 1 !important; transform: none !important; }
 }
 
 /* ─── Responsive ─────────────────────────────────────── */
@@ -512,6 +574,7 @@ footer span {
 </head>
 <body>
 
+<div id="scroll-progress" aria-hidden="true"></div>
 <nav>
   <a href="#hero" class="nav-logo">Ahmet <span>Saygılı</span></a>
   <ul class="nav-links">
@@ -572,15 +635,15 @@ footer span {
       </p>
       <div class="hero-stats" style="animation: fadeUp 0.5s ease both 0.45s; opacity:0">
         <div class="stat-item">
-          <div class="stat-num" id="stat-citations">645</div>
+          <div class="stat-num" id="stat-citations">672</div>
           <div class="stat-label">Atıf</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num" id="stat-hindex">12</div>
+          <div class="stat-num" id="stat-hindex">13</div>
           <div class="stat-label">h-indeks</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num" id="stat-i10">16</div>
+          <div class="stat-num" id="stat-i10">17</div>
           <div class="stat-label">i10-indeks</div>
         </div>
       </div>
@@ -1039,22 +1102,91 @@ fetch('data.json').then(r => r.json()).then(data => {
   }
 }).catch(() => {});
 
-// ─── Intersection observer for scroll-in ─────────────
+// ─── Intersection observer for scroll-in (staggered) ──
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
+      const delay = getComputedStyle(e.target).getPropertyValue('--sc-delay').trim() || '0ms';
+      setTimeout(() => {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }, parseInt(delay) || 0);
       obs.unobserve(e.target);
     }
   });
 }, { threshold: 0.07 });
 document.querySelectorAll('.research-card, .project-card, .pub-item, .edu-item, .rproj-item').forEach(el => {
   el.style.opacity = '0';
-  el.style.transform = 'translateY(10px)';
-  el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  el.style.transform = 'translateY(14px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   obs.observe(el);
 });
+
+// ─── Scroll progress bar ──────────────────────────────
+const progressBar = document.getElementById('scroll-progress');
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progressBar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// ─── Nav glassmorphism on scroll ──────────────────────
+const navEl2 = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  navEl2.classList.toggle('scrolled', scrollY > 48);
+}, { passive: true });
+
+// ─── Section head reveal ──────────────────────────────
+const shObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.remove('sh-hidden');
+      shObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.35 });
+document.querySelectorAll('.section-head').forEach(el => {
+  if (!el.closest('#hero')) {
+    el.classList.add('sh-hidden');
+    shObs.observe(el);
+  }
+});
+
+// ─── Hero parallax ────────────────────────────────────
+const heroGridBg = document.querySelector('.hero-grid-bg');
+if (heroGridBg) {
+  window.addEventListener('scroll', () => {
+    if (scrollY < innerHeight * 1.5) {
+      heroGridBg.style.transform = `translateY(${scrollY * 0.18}px)`;
+    }
+  }, { passive: true });
+}
+
+// ─── Stats count-up on first view ─────────────────────
+function countUp(el, target, dur) {
+  const t0 = performance.now();
+  (function step(ts) {
+    const p = Math.min((ts - t0) / dur, 1);
+    el.textContent = Math.round(p < 1 ? p * p * target : target);
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+const statsWrap = document.querySelector('.hero-stats');
+if (statsWrap) {
+  let counted = false;
+  const statObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      [['stat-citations', 1400], ['stat-hindex', 900], ['stat-i10', 900]].forEach(([id, dur]) => {
+        const el = document.getElementById(id);
+        if (el) countUp(el, parseInt(el.textContent) || 0, dur);
+      });
+      statObs.disconnect();
+    }
+  }, { threshold: 0.8 });
+  statObs.observe(statsWrap);
+}
 </script>
 </body>
 </html>
