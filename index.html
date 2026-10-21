@@ -498,40 +498,29 @@ footer span {
 
 /* ─── Scroll progress bar ────────────────────────────── */
 #scroll-progress {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-  height: 2px; background: var(--accent);
+  position: fixed; top: 54px; left: 0; right: 0; z-index: 300;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #60A5FA);
   transform-origin: left; transform: scaleX(0);
   transition: transform 80ms linear;
   pointer-events: none;
+  box-shadow: 0 0 8px rgba(59,130,246,0.6);
 }
 
-/* ─── Nav glassmorphism on scroll ────────────────────── */
-nav { transition: background 0.3s, box-shadow 0.3s; }
-nav.scrolled {
-  background: rgba(9,14,26,0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 var(--border);
-}
-:root[data-theme="light"] nav.scrolled {
-  background: rgba(247,250,253,0.92);
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) nav.scrolled {
-    background: rgba(247,250,253,0.92);
-  }
-}
+/* ─── Nav: border bottom glow on scroll ──────────────── */
+nav { transition: border-color 0.4s; }
+nav.scrolled { border-bottom-color: rgba(59,130,246,0.4); }
 
 /* ─── Section head reveal ────────────────────────────── */
 .section-head .section-num {
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.6s cubic-bezier(.22,1,.36,1), transform 0.6s cubic-bezier(.22,1,.36,1);
 }
 .section-head h2 {
-  transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+  transition: opacity 0.7s cubic-bezier(.22,1,.36,1) 0.12s, transform 0.7s cubic-bezier(.22,1,.36,1) 0.12s;
 }
 .section-head.sh-hidden .section-num,
 .section-head.sh-hidden h2 {
-  opacity: 0; transform: translateY(18px);
+  opacity: 0; transform: translateY(32px);
 }
 
 /* ─── Hero parallax background ──────────────────────── */
@@ -1126,12 +1115,13 @@ document.querySelectorAll('.research-card, .project-card, .pub-item, .edu-item, 
 const progressBar = document.getElementById('scroll-progress');
 function updateProgress() {
   const max = document.documentElement.scrollHeight - innerHeight;
-  progressBar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  const pct = max > 0 ? scrollY / max : 0;
+  progressBar.style.transform = `scaleX(${pct})`;
 }
 window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
-// ─── Nav glassmorphism on scroll ──────────────────────
+// ─── Nav border glow on scroll ────────────────────────
 const navEl2 = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   navEl2.classList.toggle('scrolled', scrollY > 48);
