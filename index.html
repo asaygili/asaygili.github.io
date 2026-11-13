@@ -332,6 +332,36 @@ h2 {
 }
 .project-actions { display: flex; gap: 8px; margin-top: 14px; }
 
+/* ─── Yazılar & Paylaşımlar ───────────────────── */
+.writing-list { display: flex; flex-direction: column; }
+.writing-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+.writing-item:last-child { border-bottom: none; }
+.writing-item > summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: 110px 1fr; gap: 24px; }
+.writing-item > summary::-webkit-details-marker { display: none; }
+.writing-item > summary:hover .writing-title { color: var(--accent); }
+.writing-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--muted2); padding-top: 3px;
+  letter-spacing: 0.04em; font-variant-numeric: tabular-nums;
+}
+.writing-title {
+  display: block; font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 600; color: var(--text);
+  margin-bottom: 6px; transition: color 0.12s;
+}
+.writing-title::after { content: ' ▾'; font-size: 10px; color: var(--muted2); }
+.writing-item[open] .writing-title::after { content: ' ▴'; }
+.writing-summary { display: block; font-size: 13px; color: var(--muted); line-height: 1.65; }
+.writing-body { margin: 18px 0 2px 134px; }
+.writing-body p { font-size: 14px; color: var(--muted); line-height: 1.85; margin-bottom: 14px; }
+.writing-body p:last-child { margin-bottom: 0; }
+.writing-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+.pub-item.share-item { grid-template-columns: 110px 1fr; text-decoration: none; transition: background 0.12s; }
+a.share-item:hover { background: var(--surface2); }
+a.share-item:hover .pub-title { color: var(--accent); }
+.share-note { font-size: 13px; color: var(--muted); line-height: 1.65; margin-top: 6px; }
+.empty-note { font-size: 13px; color: var(--muted2); font-style: italic; }
+
 /* ─── Publications ───────────────────────────────────── */
 .pub-group-label {
   font-family: 'Space Grotesk', sans-serif;
@@ -558,6 +588,8 @@ nav.scrolled { border-bottom-color: rgba(59,130,246,0.4); }
   .hero-stats { flex-wrap: wrap; }
   .edu-item { grid-template-columns: 1fr; }
   .rproj-item { grid-template-columns: 1fr; }
+  .writing-item > summary, .pub-item.share-item { grid-template-columns: 1fr; gap: 6px; }
+  .writing-body { margin-left: 0; }
 }
 </style>
 </head>
@@ -572,6 +604,8 @@ nav.scrolled { border-bottom-color: rgba(59,130,246,0.4); }
     <li><a href="#projects">Projeler</a></li>
     <li><a href="#publications">Yayınlar</a></li>
     <li><a href="#education">Eğitim</a></li>
+    <li><a href="#writing">Yazılarım</a></li>
+    <li><a href="#shares">Paylaşımlarım</a></li>
     <li><a href="#contact">İletişim</a></li>
   </ul>
   <button class="nav-theme" id="theme-toggle" aria-label="Tema değiştir">
@@ -585,6 +619,8 @@ nav.scrolled { border-bottom-color: rgba(59,130,246,0.4); }
   <button class="side-dot" data-target="projects"></button>
   <button class="side-dot" data-target="publications"></button>
   <button class="side-dot" data-target="education"></button>
+  <button class="side-dot" data-target="writing"></button>
+  <button class="side-dot" data-target="shares"></button>
   <button class="side-dot" data-target="contact"></button>
 </div>
 
@@ -992,12 +1028,34 @@ nav.scrolled { border-bottom-color: rgba(59,130,246,0.4); }
 </section>
 
 <!-- ═══ İLETİŞİM ══════════════════════════════════════ -->
+<!-- ═══ YAZILAR ═══════════════════════════════ -->
+<section id="writing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2>Yazılarım</h2>
+    </div>
+    <div class="writing-list" id="writing-list"></div>
+  </div>
+</section>
+
+<!-- ═══ PAYLAŞIMLAR ═══════════════════════════ -->
+<section id="shares">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2>Paylaşımlarım</h2>
+    </div>
+    <div class="pub-list" id="shares-list"></div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap">
     <div class="contact-wrap">
       <div>
         <div class="section-head" style="margin-bottom:0">
-          <span class="section-num">06</span>
+          <span class="section-num">08</span>
           <h2>İletişim</h2>
         </div>
         <div class="contact-list">
@@ -1066,7 +1124,7 @@ btn.addEventListener('click', () => {
 });
 
 // ─── Side dots ────────────────────────────────────────
-const sections = ['hero','research','projects','publications','education','contact'];
+const sections = ['hero','research','projects','publications','education','writing','shares','contact'];
 const dots = document.querySelectorAll('.side-dot');
 window.addEventListener('scroll', () => {
   let cur = 'hero';
@@ -1089,6 +1147,46 @@ fetch('data.json').then(r => r.json()).then(data => {
     if (s.h_index)   document.getElementById('stat-hindex').textContent   = s.h_index;
     if (s.i10_index) document.getElementById('stat-i10').textContent      = s.i10_index;
   }
+}).catch(() => {});
+
+// ─── Yazılar & Paylaşımlar ──────────────────────
+const esc = v => String(v ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const trDate = d => d ? new Date(d).toLocaleDateString('tr-TR', { day:'numeric', month:'short', year:'numeric' }) : '';
+const newestFirst = (a, b) => String(b.tarih || '').localeCompare(String(a.tarih || ''));
+const tagsHtml = t => (t || []).length ? `<div class="writing-tags">${t.map(x => `<span class="tag">${esc(x)}</span>`).join('')}</div>` : '';
+
+fetch('content.json').then(r => r.json()).then(c => {
+  const yazilar = (c.yazilar || []).slice().sort(newestFirst);
+  const paylasimlar = (c.paylasimlar || []).slice().sort(newestFirst);
+
+  document.getElementById('writing-list').innerHTML = yazilar.length ? yazilar.map(y => `
+    <details class="writing-item">
+      <summary>
+        <span class="writing-date">${esc(trDate(y.tarih))}</span>
+        <span>
+          <span class="writing-title">${esc(y.baslik)}</span>
+          <span class="writing-summary">${esc(y.ozet)}</span>
+        </span>
+      </summary>
+      <div class="writing-body">
+        ${String(y.icerik || '').split(/\n\s*\n/).filter(p => p.trim()).map(p => `<p>${esc(p.trim())}</p>`).join('')}
+        ${tagsHtml(y.etiketler)}
+      </div>
+    </details>`).join('') : '<p class="empty-note">Henüz yazı eklenmedi.</p>';
+
+  document.getElementById('shares-list').innerHTML = paylasimlar.length ? paylasimlar.map(p => {
+    const el = p.url ? 'a' : 'div';
+    const attrs = p.url ? ` href="${esc(p.url)}" target="_blank" rel="noopener"` : '';
+    return `<${el} class="pub-item share-item"${attrs}>
+      <div class="pub-year">${esc(trDate(p.tarih))}</div>
+      <div>
+        <div class="pub-title">${esc(p.baslik)}</div>
+        ${p.kaynak ? `<div class="pub-venue">${esc(p.kaynak)}</div>` : ''}
+        ${p.not ? `<div class="share-note">${esc(p.not)}</div>` : ''}
+        ${tagsHtml(p.etiketler)}
+      </div>
+    </${el}>`;
+  }).join('') : '<p class="empty-note">Henüz paylaşım eklenmedi.</p>';
 }).catch(() => {});
 
 // ─── Intersection observer for scroll-in (staggered) ──

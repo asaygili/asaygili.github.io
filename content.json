@@ -1,0 +1,21 @@
+{
+  "_nasil_eklerim": {
+    "yazi": {
+      "tarih": "2026-11-13",
+      "baslik": "Yazinin basligi",
+      "ozet": "Listede baslik altinda gorunen tek cumlelik ozet.",
+      "icerik": "Ilk paragraf.\n\nIkinci paragraf. Paragraflari bos satirla (\\n\\n) ayirin.",
+      "etiketler": ["Etiket1", "Etiket2"]
+    },
+    "paylasim": {
+      "tarih": "2026-11-13",
+      "baslik": "Paylasilan seyin basligi",
+      "url": "https://ornek.com/haber",
+      "kaynak": "Kaynak adi",
+      "not": "Neden paylastiginiza dair kisa not (istege bagli).",
+      "etiketler": ["Etiket1"]
+    }
+  },
+  "yazilar": [],
+  "paylasimlar": []
+}
