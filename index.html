@@ -14,95 +14,69 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="matrix.css">
+  <link rel="stylesheet" href="vision.css">
   <script defer src="site.js"></script>
-  <script defer src="matrix.js"></script>
+  <script defer src="vision.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">İçeriğe geç</a>
 <header class="site-header">
   <nav class="top wrap" aria-label="Ana gezinme">
-    <a class="wordmark" href="#hero"><span aria-hidden="true">AS</span> Ahmet Saygılı</a>
+    <a class="wordmark" href="#hero"><span class="sigil" aria-hidden="true"><i></i></span> Ahmet Saygılı</a>
     <div class="nav-links"><a href="#research">Araştırma</a><a href="#projects">Projeler</a><a href="#publications">Yayınlar</a><a href="#education">Eğitim</a><a href="#writing">Yazılar</a><a class="nav-contact" href="#contact">İletişim</a><button type="button" class="theme-button" id="theme-toggle" aria-pressed="false" hidden>Koyu tema</button></div>
   </nav>
 </header>
 <main id="main">
-<section id="hero" class="hero">
+<section id="hero" class="hero" aria-labelledby="hero-title">
   <canvas class="binary-rain" aria-hidden="true"></canvas>
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">DOÇ. DR. / BİLGİSAYAR MÜHENDİSLİĞİ</p>
-      <h1>Ahmet <em>Saygılı</em></h1>
-      <p class="affiliation">Tekirdağ Namık Kemal Üniversitesi · Çorlu Mühendislik Fakültesi</p>
+  <div class="wrap opening">
+    <div class="lead">
+      <p class="discipline"><i></i> BİLGİSAYAR MÜHENDİSLİĞİ</p>
+      <h1 id="hero-title"><span>Ahmet</span> <em>Saygılı</em></h1>
       <p class="intro">Tıbbi görüntü işleme, derin öğrenme ve hayvan biyometrisi üzerine çalışıyorum. MR, retina ve histopatoloji görüntülerini analiz eden bilgisayar destekli tanı yöntemleri geliştiriyorum.</p>
-      <div class="hero-actions"><a class="btn btn-primary" href="#research">Araştırmaları keşfet</a><a class="btn btn-outline" href="http://asaygili.cv.nku.edu.tr/">Akademik CV</a></div>
+      <div class="hero-actions"><a class="btn btn-primary" href="#research"><i class="aperture" aria-hidden="true"></i>Araştırma atlası</a><a class="text-link" href="#projects">Projeleri incele</a></div>
     </div>
-    <figure class="portrait">
-      <div class="portrait-art">
-        <div class="reticle" aria-hidden="true"></div>
-        <div class="orbit orbit-dashed" aria-hidden="true"></div>
-        <div class="orbit" aria-hidden="true"><span class="scan-dot"></span></div>
-        <div class="orbit orbit-alt" aria-hidden="true"><span class="scan-dot"></span></div>
-        <div class="scene-scanline" aria-hidden="true"></div>
-        <span class="scene-corner" aria-hidden="true"></span><span class="scene-corner end" aria-hidden="true"></span>
-        <button class="motion-control" type="button" aria-label="Animasyonu duraklat" hidden>Ⅱ</button>
-        <img src="ahmet-saygili.jpg" alt="Doç. Dr. Ahmet Saygılı" fetchpriority="high">
+    <figure class="viewer" data-mode="image">
+      <div class="instrument">
+        <div class="dial" aria-hidden="true"></div>
+        <div class="optics"><img id="iris" src="vision-iris.webp" width="800" height="800" alt="Turkuaz ve bakır renklerde lifleri görülen temsili iris" fetchpriority="high"><canvas id="relief" aria-hidden="true" hidden></canvas></div>
+        <span class="cross cross-a" aria-hidden="true"></span><span class="cross cross-b" aria-hidden="true"></span>
+        <span class="axis axis-x" aria-hidden="true">X</span><span class="axis axis-y" aria-hidden="true">Y</span>
       </div>
-      <figcaption><a href="https://scholar.google.com/citations?user=-9oeVawAAAAJ">Google Scholar</a><a href="https://orcid.org/0000-0001-8625-4842">ORCID</a><a href="https://github.com/asaygili">GitHub</a></figcaption>
+      <figcaption><span>İris <i>/</i> Görüntü deneyi</span><button class="motion-control" type="button" hidden>Duraklat</button></figcaption>
+      <div class="modes" role="group" aria-label="İris görüntüleme biçimi" hidden><button type="button" data-view="image" aria-pressed="true">Spektrum</button><button type="button" data-view="edges" aria-pressed="false">Kenarlar</button><button type="button" data-view="relief" aria-pressed="false">3B yüzey</button></div>
     </figure>
   </div>
 </section>
-<div class="metrics">
-  <div class="wrap metrics-grid">
-    <p>Google Scholar <small id="stat-date">19 Ekim 2026</small></p>
-    <dl><div><dt>Atıf</dt><dd id="stat-citations">672</dd></div><div><dt>h-indeks</dt><dd id="stat-hindex">13</dd></div><div><dt>i10-indeks</dt><dd id="stat-i10">17</dd></div></dl>
-  </div>
-</div>
-<section id="research">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Araştırma Alanları</h2>
-    </div>
-    <div class="research-grid">
-      <div class="research-card">
-        
-        <h3>Tıbbi Görüntü İşleme</h3>
-        <p>Histopatoloji, dermatoloji, MRI ve akciğer görüntülerinin derin öğrenme ile analizi. COVID-19, kalp krizi ve maymun çiçeği gibi hastalıklarda bilgisayar destekli tanı sistemleri.</p>
-      </div>
-      <div class="research-card">
-        
-        <h3>Derin Öğrenme</h3>
-        <p>CNN, EfficientNet, ViT, Swin Transformer, DenseNet ve ConvNeXt mimarileri. ArcFace tabanlı metrik öğrenme, Grad-CAM ile yorumlanabilir yapay zeka (XAI) uygulamaları.</p>
-      </div>
-      <div class="research-card">
-        
-        <h3>Tarım &amp; Hayvancılıkta Görüntü İşleme</h3>
-        <p>Büyükbaş hayvanların retinal damar desenleri, burun ve yüz görüntüleri ile biyometrik kimlik doğrulama. CattNIS ile özellik eşleştirme, CattleFaceMuzzle ile ArcFace metrik öğrenme ve Grad-CAM yorumlanabilirliği.</p>
-      </div>
-      <div class="research-card">
-        
-        <h3>Veri Madenciliği &amp; Makine Öğrenmesi</h3>
-        <p>Kümeleme algoritmaları, özellik çıkarımı ve makine öğrenmesi yöntemleriyle eğitim başarısı analizi, hastalık tahmini ve bitki yaprağı hastalık tespiti uygulamaları.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="profile-band"><div class="wrap profile-strip">
+  <img class="id-photo" src="ahmet-saygili.jpg" width="110" height="138" alt="Ahmet Saygılı">
+  <div class="identity"><strong>Doç. Dr. Ahmet Saygılı</strong><p>Tekirdağ Namık Kemal Üniversitesi<br>Çorlu Mühendislik Fakültesi</p><div class="profile-links"><a href="http://asaygili.cv.nku.edu.tr/">Akademik CV</a><a href="https://scholar.google.com/citations?user=-9oeVawAAAAJ">Scholar</a><a href="https://orcid.org/0000-0001-8625-4842">ORCID</a><a href="https://github.com/asaygili">GitHub</a></div></div>
+  <div class="citation-block"><p>Google Scholar <span id="stat-date">19 Ekim 2026</span></p><dl><div><dt>Atıf</dt><dd id="stat-citations">672</dd></div><div><dt>h-indeks</dt><dd id="stat-hindex">13</dd></div><div><dt>i10-indeks</dt><dd id="stat-i10">17</dd></div></dl></div>
+</div></div>
+<section id="research"><div class="wrap">
+  <h2 class="atlas-title">Araştırma <em>atlası.</em></h2>
+  <div class="atlas-grid"><figure class="atlas-plate"><img id="atlas-image" src="vision-fundus.webp" width="600" height="600" loading="lazy" alt=""><figcaption id="atlas-caption">İllüstrasyon · Retina damarları</figcaption></figure>
+  <div class="atlas-list"><details class="atlas-entry" data-plate="fundus" data-caption="Retina damarları" open><summary>Tıbbi Görüntü İşleme</summary><p>Histopatoloji, dermatoloji, MRI ve akciğer görüntülerinin derin öğrenme ile analizi. COVID-19, kalp krizi ve maymun çiçeği gibi hastalıklarda bilgisayar destekli tanı sistemleri.</p></details>
+<details class="atlas-entry" data-plate="network" data-caption="Sinir ağı katmanları"><summary>Derin Öğrenme</summary><p>CNN, EfficientNet, ViT, Swin Transformer, DenseNet ve ConvNeXt mimarileri. ArcFace tabanlı metrik öğrenme, Grad-CAM ile yorumlanabilir yapay zeka (XAI) uygulamaları.</p></details>
+<details class="atlas-entry" data-plate="cattle" data-caption="Biyometrik özellikler"><summary>Tarım &amp; Hayvancılıkta Görüntü İşleme</summary><p>Büyükbaş hayvanların retinal damar desenleri, burun ve yüz görüntüleri ile biyometrik kimlik doğrulama. CattNIS ile özellik eşleştirme, CattleFaceMuzzle ile ArcFace metrik öğrenme ve Grad-CAM yorumlanabilirliği.</p></details>
+<details class="atlas-entry" data-plate="clusters" data-caption="Veri kümeleri"><summary>Veri Madenciliği &amp; Makine Öğrenmesi</summary><p>Kümeleme algoritmaları, özellik çıkarımı ve makine öğrenmesi yöntemleriyle eğitim başarısı analizi, hastalık tahmini ve bitki yaprağı hastalık tespiti uygulamaları.</p></details></div></div></div></section>
 <section class="spotlight" aria-labelledby="spot-title">
   <div class="wrap spot-grid">
-    <div><p class="eyebrow">ÖNE ÇIKAN ARAŞTIRMA</p><h2 id="spot-title">Retina görüntülerinden <em>hastalık sınıflandırma</em></h2></div>
+    <div><p class="eyebrow">ÖNE ÇIKAN ARAŞTIRMA</p><h2 id="spot-title">Retina görüntülerinden <em>hastalık sınıflandırma.</em></h2></div>
     <div><p>Retina görüntülerini sınıflandıran beş derin öğrenme modelini doğruluk, eğitim süresi, bellek kullanımı ve enerji tüketimi açısından karşılaştırdık.</p><div class="hero-actions"><a class="btn btn-primary" href="https://doi.org/10.1002/cpe.70366">Makaleyi oku</a><a class="btn btn-outline" href="https://github.com/asaygili/retina">Kaynak kodu</a></div></div>
   </div>
 </section>
 <section id="projects">
   <div class="wrap">
     <div class="section-head">
-      <h2>Açık Kaynak ve Uygulamalar</h2>
+      <h2>Açık kaynak <em>ve uygulamalar.</em></h2>
     </div>
     <div class="projects-grid">
 
       <a href="https://github.com/asaygili/CattleFaceMuzzle" target="_blank" rel="noopener" class="project-card">
+        <div class="project-cover"><img src="vision-cattle.webp" alt="" loading="lazy"></div>
         <div class="project-top">
           <span class="project-lang">Python</span>
           
@@ -113,6 +87,7 @@
       </a>
 
       <a href="https://github.com/asaygili/CattNIS" target="_blank" rel="noopener" class="project-card">
+        <div class="project-cover"><img src="vision-fundus.webp" alt="" loading="lazy"></div>
         <div class="project-top">
           <span class="project-lang">MATLAB</span>
           
@@ -123,6 +98,7 @@
       </a>
 
       <a href="https://github.com/asaygili/retina" target="_blank" rel="noopener" class="project-card">
+        <div class="project-cover"><img src="vision-vessels.webp" alt="" loading="lazy"></div>
         <div class="project-top">
           <span class="project-lang">Python</span>
           
@@ -209,7 +185,7 @@
 <section id="publications">
   <div class="wrap">
     <div class="section-head">
-      <h2>Yayınlar</h2>
+      <h2>Yayın <em>arşivi.</em></h2>
     </div>
 <div class="filters" hidden>
   <label>Yayın ara<input type="search" id="publication-search" placeholder="Başlık, yazar veya dergi"></label>
