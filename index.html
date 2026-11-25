@@ -16,7 +16,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="matrix.css">
   <script defer src="site.js"></script>
+  <script defer src="matrix.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">İçeriğe geç</a>
@@ -28,6 +30,7 @@
 </header>
 <main id="main">
 <section id="hero" class="hero">
+  <canvas class="binary-rain" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">DOÇ. DR. / BİLGİSAYAR MÜHENDİSLİĞİ</p>
@@ -39,6 +42,12 @@
     <figure class="portrait">
       <div class="portrait-art">
         <div class="reticle" aria-hidden="true"></div>
+        <div class="orbit orbit-dashed" aria-hidden="true"></div>
+        <div class="orbit" aria-hidden="true"><span class="scan-dot"></span></div>
+        <div class="orbit orbit-alt" aria-hidden="true"><span class="scan-dot"></span></div>
+        <div class="scene-scanline" aria-hidden="true"></div>
+        <span class="scene-corner" aria-hidden="true"></span><span class="scene-corner end" aria-hidden="true"></span>
+        <button class="motion-control" type="button" aria-label="Animasyonu duraklat" hidden>Ⅱ</button>
         <img src="ahmet-saygili.jpg" alt="Doç. Dr. Ahmet Saygılı" fetchpriority="high">
       </div>
       <figcaption><a href="https://scholar.google.com/citations?user=-9oeVawAAAAJ">Google Scholar</a><a href="https://orcid.org/0000-0001-8625-4842">ORCID</a><a href="https://github.com/asaygili">GitHub</a></figcaption>
